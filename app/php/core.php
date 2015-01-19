@@ -7,6 +7,7 @@ function getJs(){
     $watermark = "tmp/$userDir//watermark.png";//картинка после наложения
 
 
+
     $stampPaddingLeft = $_SESSION["paddingLeft"];//отступ снизу
     $stampPaddingTop = $_SESSION["paddingTop"];//отступ сверху
     $stampOpacity = $_SESSION["opacity"]; // прозрачность в процентах
