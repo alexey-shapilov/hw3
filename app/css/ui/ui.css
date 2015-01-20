@@ -392,3 +392,28 @@ footer {
   font-size: 12px;
   color: #fff;
 }
+
+.ui-slider {
+  position: relative;
+  width: 218px;
+  height: 3px;
+  margin: 25px 0 30px;
+  border-radius: 3px;
+  background-color: #dbe1e8;
+}
+
+.ui-slider-handle {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  bottom: -5px;
+  width: 24px;
+  height: 24px;
+  margin: auto 0 auto -10px;
+  cursor: pointer;
+  outline: none;
+  background: url("/img/ui/handle.png") no-repeat left top;
+}
+.ui-slider-handle:hover, .ui-slider-handle :active {
+  background-position: left bottom;
+}

@@ -17,6 +17,7 @@ html
         //Google Fonts
         link(href='http://fonts.googleapis.com/css?family=Roboto:300,500italic,400&subset=cyrillic,latin', rel='stylesheet', type='text/css')
 
+        link(rel='stylesheet', href="../css/ui/jquery-ui.css")
         link(rel='stylesheet', href="../css/ui/ui.css")
     body
         <!--[if lt IE 7]>
@@ -89,6 +90,7 @@ html
                         .settings-block.block__border-none
                             .block__header
                                 h3 Прозрачность
+                            .slider
                         .button-block
                             button.btn__reset(type="reset") Сброс
                             button.btn__submit(type="submit") Скачать
@@ -99,4 +101,5 @@ html
                     p &copy; 2014, Это мой сайт, пожалуйста, не копируйте и не воруйте его
 
         script(type='text/javascript', src='/js/libs/jquery/jquery.min.js')
+        script(type='text/javascript', src='/js/libs/jquery-ui/jquery-ui.min.js')
         script(type='text/javascript', src='/js/app.js')
