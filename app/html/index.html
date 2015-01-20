@@ -1,0 +1,112 @@
+<!DOCTYPE html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>loftschool homework-3</title>
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <!--Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,500italic,400&amp;subset=cyrillic,latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/ui/ui.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrapper">
+      <div class="maincontent">
+        <div class="container">
+          <div class="block__left">
+            <h1>Генератор водяных знаков</h1>
+            <div class="block__left-result"></div>
+          </div>
+          <div class="block__right">
+            <h2>Настройки</h2>
+            <div class="settings-block">
+              <div class="upload-file-row">
+                <label for="upload-pic" class="file-label">Исходное изображение</label>
+                <div class="file">
+                  <input id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
+                  <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                  <div class="file__btn"></div>
+                </div>
+              </div>
+              <div class="upload-file-row">
+                <label for="upload-wm" class="file-label">Водяной знак</label>
+                <div class="file">
+                  <input id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
+                  <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                  <div class="file__btn"></div>
+                </div>
+              </div>
+            </div>
+            <div class="settings-block">
+              <div class="block__header">
+                <h3>Положение</h3>
+              </div>
+              <div class="position">
+                <div class="position__visual">
+                  <table class="position__visual-box">
+                    <tbody class="box__body">
+                      <tr class="box__row">
+                        <td class="box__cell"><a href="#" class="box__cell-btn active"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                      </tr>
+                      <tr class="box__row">
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                      </tr>
+                      <tr class="box__row">
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="position__coordinates">
+                  <div class="switch__wrap">
+                    <label class="coord__label">X</label>
+                    <input id="coord__x" name="coord__x" type="text" value="0" class="coord__counter">
+                    <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+                  </div>
+                  <div class="switch__wrap">
+                    <label class="coord__label">Y</label>
+                    <input id="coord__y" name="coord__y" type="text" value="0" class="coord__counter">
+                    <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="settings-block block__border-none">
+              <div class="block__header">
+                <h3>Прозрачность</h3>
+              </div>
+            </div>
+            <div class="button-block">
+              <button type="reset" class="btn__reset">Сброс</button>
+              <button type="submit" class="btn__submit">Скачать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="empty"></div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__text">
+          <p>&copy; 2014, Это мой сайт, пожалуйста, не копируйте и не воруйте его</p>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="/js/libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+  </body>
+</html>
