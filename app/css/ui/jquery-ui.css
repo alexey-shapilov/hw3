@@ -844,7 +844,6 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd;
 	background: #9eb2c0  50% top repeat-x;
 	color: #333333;
 }
