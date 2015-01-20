@@ -1,22 +1,27 @@
 <?php
-require_once ("img-config.php");
 function getJs(){
 
-    $mainImage = "tmp/$userDir/main.jpg";//картинка фона
-    $stampImage = "tmp/$userDir/stamp.jpeg";//картинка водного знака
-    $watermark = "tmp/$userDir//watermark.png";//картинка после наложения
+    if (isset($_POST['paddingLeft'])  AND isset($_POST['paddingTop']) AND  isset($_POST['opacity'])){
 
+        $_SESSION["paddingLeft"] = $_POST['paddingLeft'];
+        $_SESSION["paddingTop"] = $_POST['paddingTop'];
+        $_SESSION["opacity"] = $_POST['opacity'];
+    }
+    else {
 
+    }
+
+}// данные из js
+
+function watermarkCreate($stampPaddingLeft, $stampPaddingTop, $stampOpacity){
 
     $stampPaddingLeft = $_SESSION["paddingLeft"];//отступ снизу
     $stampPaddingTop = $_SESSION["paddingTop"];//отступ сверху
     $stampOpacity = $_SESSION["opacity"]; // прозрачность в процентах
-    //todo записать в массив сессии данные из js
-}//в разработке
 
-function watermarkCreate($mainImage, $stampImage, $stampPaddingLeft, $stampPaddingTop, $stampOpacity){
-
-    //getJs();// берём данные из JS
+    $mainImage = "tmp/$userDir/main.jpg";//картинка фона
+    $stampImage = "tmp/$userDir/stamp.jpeg";//картинка водного знака
+    $watermark = "tmp/$userDir/watermark.png";//картинка после наложения
 
     $image = imagecreatefromjpeg($mainImage); /* todo  imagecreatefrom должна быть зависима от типа файлов*/
     $stamp = imagecreatefromjpeg($stampImage);/* todo  imagecreatefrom должна быть зависима от типа файлов*/
