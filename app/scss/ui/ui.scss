@@ -24,7 +24,7 @@
   width: 651px;
   height: 534px;
   margin: 0 auto;
-  background: #fff url("/img/ui/transparent.png") repeat 0 0;
+  background: #fff url("../../img/ui/transparent.png") repeat 0 0;
 }
 
 //Block settings
@@ -55,7 +55,7 @@
     position: absolute;
     bottom: -11px;
     left: 45%;
-    background: url("/img/ui/str-decor.png") no-repeat 0 0;
+    background: url("../../img/ui/sprites.png") no-repeat -95px 0;
     width: 22px;
     height: 13px;
   }
@@ -105,7 +105,7 @@
   display: inline-block;
   height:28px;
   width: 40px;
-  background: #f97e76 url('/img/ui/upload.png') no-repeat center center;
+  background: #f97e76 url('../../img/ui/upload.png') no-repeat center center;
 }
 
 .file__upload-pic{
@@ -120,11 +120,51 @@
 
 .block__header {
   margin-top: 20px;
-  
+  margin-bottom: 20px;
+
   h3 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 14px;
+  }
+}
+
+.switch__btn {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+}
+
+.switch__btn-one,
+.switch__btn-four {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background: url('../../img/ui/sprites.png') no-repeat 0 0;
+}
+
+.switch__btn-one {
+  background-position: 0 0;
+  margin-left: 10px;
+
+  &:hover {
+    background-position: -22px 0;
+  }
+
+  &.active {
+    background-position: -43px 0;
+  }
+}
+
+.switch__btn-four {
+  background-position: 0 -21px;
+
+  &:hover {
+    background-position: -22px -21px;
+  }
+
+  &.active {
+    background-position: -43px -21px;
   }
 }
 
@@ -216,13 +256,13 @@
   position: absolute;
   top: 5px;
   left: 0;
-  background: url('/img/ui/str-up.png') no-repeat 0 0;
+  background: url('../../img/ui/sprites.png') no-repeat -35px -58px;
   text-indent: -9999px;
   width: 13px;
   height: 8px;
 
   &:hover {
-    background: url('/img/ui/str-up-hover.png') no-repeat 0 0;
+    background: url('../../img/ui/sprites.png') no-repeat -19px -58px;
   }
 }
 
@@ -230,13 +270,13 @@
   position: absolute;
   bottom: -12px;
   left: 0;
-  background: url('/img/ui/str-down.png') no-repeat 0 0;
+  background: url('../../img/ui/sprites.png') no-repeat -34px -75px;
   text-indent: -9999px;
   width: 13px;
   height: 8px;
 
   &:hover {
-    background: url('/img/ui/str-down-hover.png') no-repeat 0 0;
+    background: url('../../img/ui/sprites.png') no-repeat -18px -75px;
   }
 }
 
@@ -317,9 +357,9 @@
   margin: auto 0 auto -10px;
   cursor: pointer;
   outline: none;
-  background: url('/img/ui/handle.png') no-repeat left top;
+  background: url('../../img/ui/sprites.png') no-repeat -65px 0;
    &:hover, :active {
-     background-position: left bottom;
+     background-position: -65px -34px;
    }
 }
 
