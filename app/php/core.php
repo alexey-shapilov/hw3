@@ -23,8 +23,10 @@ function watermarkCreate($userDir){
     $stampImage = "tmp/$userDir/stamp.jpeg";//картинка водного знака
 
 
-    $image = imagecreatefromjpeg($mainImage); /* todo  imagecreatefrom должна быть зависима от типа файлов*/
-    $stamp = imagecreatefromjpeg($stampImage);/* todo  imagecreatefrom должна быть зависима от типа файлов*/
+
+    $image = image_create($mainImage);
+    $stamp = image_create($stampImage);
+
     $stampWidth = imagesx($stamp);
     $stampHeight = imagesy($stamp);
 
@@ -35,15 +37,27 @@ function watermarkCreate($userDir){
 } //создаёт водный знак (готово 80% {нет зависимости от типа файлов})
 
 function createTempDir (){
-    //  todo    создание временной папки {создаёт дирректорию с именем сессии}
+    if (isset($_SESSION["ID"])){
+        $userDir = $_SESSION["ID"];
+        mkdir("temp/$userDir");
+    }
+    else {
+        echo "Сессия не мнмциализирована";
+    }
+
+
+
+    //  todo    создание временной папки {кажется должно быть не так}
 }   //в разработке
 
 function fileUpload(){
+
     //  todo    загрузка  файлов на сервер  во времнную папку {true if success}
 }       //в разработке
 
 function fileDownload(){
     $watermark = "tmp/$userDir/watermark.png";//картинка после наложения
+
 //  todo    скачивание  файлов  с сервера из временной дирректории {}
 }     //в разработке
 
@@ -57,7 +71,7 @@ function clean($dirName){
 }    //удаляет папку пользователя и его сессию (готово 90%)
 
 function resize($image, $newWidth, $newHeight) {
-    $image = imagecreatefromjpeg($image);/* todo  imagecreatefrom должна быть зависима от типа файлов*/
+    image_create($image);
     $oldWidth = imagesx($image);
     $oldHeight = imagesy($image);
     $newImage = imagecreatetruecolor($newWidth, $newHeight);
@@ -66,3 +80,18 @@ function resize($image, $newWidth, $newHeight) {
     imagepng($image, 'img/resized.png');// Сохранение фотографии в файл
     imagedestroy($image); //освобождение памяти
 }  //изменяет размер изображения (готово 80% {нет зависимости от типа файлов})
+
+function image_create($image){
+    $image_type = exif_imagetype("$image");
+    if( $image_type == IMAGETYPE_JPEG ) {
+        $image = imagecreatefromjpeg($image);
+    } elseif( $image_type == IMAGETYPE_GIF ) {
+        $image = imagecreatefromgif($image);
+    } elseif( $image_type == IMAGETYPE_PNG ) {
+        $image = imagecreatefrompng($image);
+    }
+    else{
+        echo "Тип файла не поддерживается.";
+    }
+    return $image;
+} //
