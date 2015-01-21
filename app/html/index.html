@@ -24,81 +24,86 @@
         <div class="container">
           <div class="block__left">
             <h1>Генератор водяных знаков</h1>
-            <div class="block__left-result"></div>
+            <div class="block__left-result">
+              <div class="bg"></div>
+              <div class="watermark-wrapper"></div>
+            </div>
           </div>
           <div class="block__right">
             <h2>Настройки</h2>
-            <div class="settings-block">
-              <div class="upload-file-row">
-                <label for="upload-pic" class="file-label">Исходное изображение</label>
-                <div class="file">
-                  <input id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
-                  <div class="file__inputbox"><span>Загрузите изображение</span></div>
-                  <div class="file__btn"></div>
-                </div>
-              </div>
-              <div class="upload-file-row">
-                <label for="upload-wm" class="file-label">Водяной знак</label>
-                <div class="file">
-                  <input id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
-                  <div class="file__inputbox"><span>Загрузите изображение</span></div>
-                  <div class="file__btn"></div>
-                </div>
-              </div>
-            </div>
-            <div class="settings-block">
-              <div class="block__header">
-                <h3>Положение</h3>
-              </div>
-              <div class="switch__btn"><a href="#" class="switch__btn-four"></a><a href="#" class="switch__btn-one active"></a></div>
-              <div class="position">
-                <div class="position__visual">
-                  <table class="position__visual-box">
-                    <tbody class="box__body">
-                      <tr class="box__row">
-                        <td class="box__cell"><a href="#" class="box__cell-btn active"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                      </tr>
-                      <tr class="box__row">
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                      </tr>
-                      <tr class="box__row">
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                        <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="position__coordinates">
-                  <div class="switch__wrap">
-                    <label class="coord__label">X</label>
-                    <input id="coord__x" name="coord__x" type="text" value="0" class="coord__counter">
-                    <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+            <form id="save-img-form">
+              <div class="settings-block">
+                <div class="upload-file-row">
+                  <label for="upload-pic" class="file-label">Исходное изображение</label>
+                  <div class="file">
+                    <input id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
+                    <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                    <div class="file__btn"></div>
                   </div>
-                  <div class="switch__wrap">
-                    <label class="coord__label">Y</label>
-                    <input id="coord__y" name="coord__y" type="text" value="0" class="coord__counter">
-                    <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+                </div>
+                <div class="upload-file-row">
+                  <label for="upload-wm" class="file-label">Водяной знак</label>
+                  <div class="file">
+                    <input id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required class="file__upload-pic">
+                    <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                    <div class="file__btn"></div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="settings-block block__border-none">
-              <div class="block__header">
-                <h3>Прозрачность</h3>
+              <div class="settings-block">
+                <div class="block__header">
+                  <h3>Положение</h3>
+                </div>
+                <div class="switch__btn"><a href="#" class="switch__btn-four"></a><a href="#" class="switch__btn-one active"></a></div>
+                <div class="position">
+                  <div class="position__visual">
+                    <table class="position__visual-box">
+                      <tbody class="box__body">
+                        <tr class="box__row">
+                          <td class="box__cell"><a href="#" class="box__cell-btn active"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        </tr>
+                        <tr class="box__row">
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        </tr>
+                        <tr class="box__row">
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                          <td class="box__cell"><a href="#" class="box__cell-btn"></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="position__coordinates">
+                    <div class="switch__wrap">
+                      <label class="coord__label">X</label>
+                      <input id="coord__x" name="coord__x" type="text" value="0" class="coord__counter">
+                      <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+                    </div>
+                    <div class="switch__wrap">
+                      <label class="coord__label">Y</label>
+                      <input id="coord__y" name="coord__y" type="text" value="0" class="coord__counter">
+                      <div class="coord__spinners"><a href="#" class="coord__spinners-up">Больше</a><a href="#" class="coord__spinners-down">Меньше</a></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="ui-slider">
-                <div class="ui-slider-handle"></div>
+              <div class="settings-block block__border-none">
+                <div class="block__header">
+                  <h3>Прозрачность</h3>
+                </div>
+                <div class="ui-slider">
+                  <div class="ui-slider-handle"></div>
+                </div>
               </div>
-            </div>
-            <div class="button-block">
-              <button type="reset" class="btn__reset">Сброс</button>
-              <button type="submit" class="btn__submit">Скачать</button>
-            </div>
+              <div class="button-block">
+                <input type="reset" value="Сброс" class="btn__reset">
+                <input type="submit" value="Скачать" class="btn__submit">
+              </div>
+            </form>
           </div>
         </div>
       </div>

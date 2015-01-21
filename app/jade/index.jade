@@ -29,75 +29,79 @@ html
                     .block__left
                         h1 Генератор водяных знаков
                         .block__left-result
+                            div.bg
+                            div.watermark-wrapper
                     .block__right
                         h2 Настройки
-                        .settings-block
-                            .upload-file-row
-                                label.file-label(for="upload-pic") Исходное изображение
-                                .file
-                                    input.file__upload-pic(id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required)
-                                    .file__inputbox
-                                        span Загрузите изображение
-                                    .file__btn
-                            .upload-file-row
-                                label.file-label(for="upload-wm") Водяной знак
-                                .file
-                                    input.file__upload-pic(id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required)
-                                    .file__inputbox
-                                        span Загрузите изображение
-                                    .file__btn
-                        .settings-block
-                            .block__header
-                                h3 Положение
-                            .switch__btn
-                                a.switch__btn-four(href="#")
-                                a.switch__btn-one.active(href="#")
-                            .position
-                                .position__visual
-                                    table.position__visual-box
-                                        tbody.box__body
-                                            tr.box__row
-                                                td.box__cell
-                                                    a.box__cell-btn.active(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                            tr.box__row
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                            tr.box__row
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                                td.box__cell
-                                                    a.box__cell-btn(href="#")
-                                .position__coordinates
-                                    .switch__wrap
-                                        label.coord__label X
-                                        input.coord__counter(id="coord__x" name="coord__x" type="text" value="0")
-                                        .coord__spinners
-                                            a.coord__spinners-up(href="#") Больше
-                                            a.coord__spinners-down(href="#") Меньше
-                                    .switch__wrap
-                                        label.coord__label Y
-                                        input.coord__counter(id="coord__y" name="coord__y" type="text" value="0")
-                                        .coord__spinners
-                                            a.coord__spinners-up(href="#") Больше
-                                            a.coord__spinners-down(href="#") Меньше
-                        .settings-block.block__border-none
-                            .block__header
-                                h3 Прозрачность
-                            .ui-slider
-                                .ui-slider-handle
-                        .button-block
-                            button.btn__reset(type="reset") Сброс
-                            button.btn__submit(type="submit") Скачать
+
+                        form(id="save-img-form")
+                            div.settings-block
+                                .upload-file-row
+                                    label.file-label(for="upload-pic") Исходное изображение
+                                    .file
+                                        input.file__upload-pic(id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required)
+                                        .file__inputbox
+                                            span Загрузите изображение
+                                        .file__btn
+                                .upload-file-row
+                                    label.file-label(for="upload-wm") Водяной знак
+                                    .file
+                                        input.file__upload-pic(id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required)
+                                        .file__inputbox
+                                            span Загрузите изображение
+                                        .file__btn
+                            div.settings-block
+                                .block__header
+                                    h3 Положение
+                                .switch__btn
+                                    a.switch__btn-four(href="#")
+                                    a.switch__btn-one.active(href="#")
+                                .position
+                                    .position__visual
+                                        table.position__visual-box
+                                            tbody.box__body
+                                                tr.box__row
+                                                    td.box__cell
+                                                        a.box__cell-btn.active(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                tr.box__row
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                tr.box__row
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                                    td.box__cell
+                                                        a.box__cell-btn(href="#")
+                                    .position__coordinates
+                                        .switch__wrap
+                                            label.coord__label X
+                                            input.coord__counter(id="coord__x" name="coord__x" type="text" value="0")
+                                            .coord__spinners
+                                                a.coord__spinners-up(href="#") Больше
+                                                a.coord__spinners-down(href="#") Меньше
+                                        .switch__wrap
+                                            label.coord__label Y
+                                            input.coord__counter(id="coord__y" name="coord__y" type="text" value="0")
+                                            .coord__spinners
+                                                a.coord__spinners-up(href="#") Больше
+                                                a.coord__spinners-down(href="#") Меньше
+                            div.settings-block.block__border-none
+                                .block__header
+                                    h3 Прозрачность
+                                .ui-slider
+                                    .ui-slider-handle
+                            div.button-block
+                                input.btn__reset(type="reset", value="Сброс")
+                                input.btn__submit(type="submit", value="Скачать")
             .empty
         footer.footer
             .container
