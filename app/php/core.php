@@ -28,7 +28,7 @@ function watermark_create($userDir){
     imagecopymerge( $image, $stamp, $stampPaddingLeft, $stampPaddingTop, 0, 0, $stampWidth, $stampHeight, $stampOpacity);// Слияние штампа с фотографией.
     imagepng($image, "tmp/$userDir/watermark.png");// Сохранение фотографии в файл
     imagedestroy($image); //освобождение памяти
-} //создаёт водный знак (готово 80% {нет зависимости от типа файлов})
+} //создаёт водный знак (готово 90%)
 
 function create_temp_dir (){
     if (isset($_SESSION["ID"])){
@@ -42,7 +42,7 @@ function create_temp_dir (){
 
 
     //  todo    создание временной папки {кажется должно быть не так}
-}   //в разработке
+}   //создаёт дирректорию (готово 40% {название берётся из сессии})
 
 function file_upload(){
 
@@ -73,7 +73,7 @@ function resize($image, $newWidth, $newHeight) {
     $image = $newImage;
     imagepng($image, 'img/resized.png');// Сохранение фотографии в файл
     imagedestroy($image); //освобождение памяти
-}  //изменяет размер изображения (готово 80% {нет зависимости от типа файлов})
+}  //изменяет размер изображения (готово 90%)
 
 function image_create($image){
     $image_type = exif_imagetype("$image");
@@ -88,4 +88,4 @@ function image_create($image){
         echo "Тип файла не поддерживается.";
     }
     return $image;
-} // Возвращает созданное изображение {с зависимостью от типа картинки}
+} // Возвращает созданное изображение (готово 90% {с зависимостью от типа картинки})
