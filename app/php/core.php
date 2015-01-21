@@ -11,7 +11,10 @@ function get_js(){
 
 }// берёт данные из js (готово 40% {нет js})
 
-function watermark_create($userDir){
+function watermark_create(){
+
+    $userDir = $_SESSION["ID"];
+
     $stampPaddingLeft = $_SESSION["paddingLeft"];//отступ снизу
     $stampPaddingTop = $_SESSION["paddingTop"];//отступ сверху
     $stampOpacity = $_SESSION["opacity"]; // прозрачность в процентах
@@ -50,7 +53,28 @@ function file_upload(){
 }       //в разработке
 
 function file_download(){
-    $watermark = "tmp/$userDir/watermark.png";//картинка после наложения
+    $userDir = $_SESSION["ID"];
+    $file = "tmp/$userDir/watermark.png"; //картинка после наложения
+    if (file_exists($file)) {
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        //if (ob_get_level()) {
+        //    ob_end_clean();
+        //}
+        // заставляем браузер показать окно сохранения файла
+        //header('Content-Description: File Transfer');
+        //header('Content-Type: application/octet-stream');
+        //header('Content-Disposition: attachment; filename=' . basename($file));
+        //header('Content-Transfer-Encoding: binary');
+        //header('Expires: 0');
+        //header('Cache-Control: must-revalidate');
+        //header('Pragma: public');
+        //header('Content-Length: ' . filesize($file));
+        // читаем файл и отправляем его пользователю
+        readfile($file);
+        exit;
+    }
+}
 
 //  todo    скачивание  файлов  с сервера из временной дирректории {}
 }     //в разработке
