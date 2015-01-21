@@ -1,5 +1,8 @@
 @import "base";
 
+.hide {
+  display: none;
+}
 //Block preview
 
 .block__left {
@@ -257,42 +260,6 @@
   text-align: center;
 }
 
-.coord__spinners {
-  display: inline-block;
-  position: relative;
-  width: 15px;
-  height: 28px;
-  margin-left: 5px;
-}
-
-.coord__spinners-up {
-  position: absolute;
-  top: 5px;
-  left: 0;
-  background: url('../../img/ui/sprites.png') no-repeat -35px -58px;
-  text-indent: -9999px;
-  width: 13px;
-  height: 8px;
-
-  &:hover {
-    background: url('../../img/ui/sprites.png') no-repeat -19px -58px;
-  }
-}
-
-.coord__spinners-down {
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  background: url('../../img/ui/sprites.png') no-repeat -34px -75px;
-  text-indent: -9999px;
-  width: 13px;
-  height: 8px;
-
-  &:hover {
-    background: url('../../img/ui/sprites.png') no-repeat -18px -75px;
-  }
-}
-
 .block__border-none {
   margin-bottom: 50px;
 }
@@ -376,3 +343,36 @@
    }
 }
 
+// spinner styles
+.coord__spinners {
+  display: inline-block;
+  position: relative;
+  width: 15px;
+  height: 28px;
+  margin-left: 5px;
+}
+
+.spinner-up-btn,
+.spinner-down-btn {
+  text-indent: -9999px;
+  width: 13px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.spinner-up-btn {
+  background: url('../../img/ui/sprites.png') no-repeat -35px -58px;
+  top: 5px;
+  left: 0;
+  &:hover {
+    background: url('../../img/ui/sprites.png') no-repeat -19px -58px;
+  }
+}
+.spinner-down-btn {
+  background: url('../../img/ui/sprites.png') no-repeat -34px -75px;
+  bottom: -12px;
+  left: 0;
+  &:hover {
+    background: url('../../img/ui/sprites.png') no-repeat -18px -75px;
+  }
+}

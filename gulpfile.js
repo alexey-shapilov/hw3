@@ -159,7 +159,7 @@ gulp.task('compileJade', function() {
 });
 
 gulp.task('compileScss', function() {
-    return gulp.src(appPaths.scss + '**')
+    return gulp.src(appPaths.scss + '**/*.scss')
         .pipe(plumber())
         .pipe(compass({
             config_file: 'config.rb',

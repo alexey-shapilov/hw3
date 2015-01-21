@@ -11,6 +11,7 @@ var app = {
         self.downloadWatermarkImg();
         self.setWatermarkOpacity();
         self.setWatermarkPositionByVisualPanel();
+        self.setWatermarkPositionBySpinner();
 
         console.log('addListeners');
     },
@@ -42,14 +43,12 @@ var app = {
             watermarkWrapper.removeAttr('style');
             switch (watermarkPosition) {
                 case 'top-left':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: 0,
                         left: 0
                     });
                     break;
                 case 'top-middle':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: 0,
                         left: '50%',
@@ -57,21 +56,18 @@ var app = {
                     });
                     break;
                 case 'top-right':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: 0,
                         right: 0
                     });
                     break;
                 case 'center-left':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: '50%',
                         marginTop: '-90px'
                     });
                     break;
                 case 'center-middle':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: '50%',
                         marginTop: '-90px',
@@ -80,7 +76,6 @@ var app = {
                     });
                     break;
                 case 'center-right':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         top: '50%',
                         marginTop: '-90px',
@@ -88,14 +83,12 @@ var app = {
                     });
                     break;
                 case 'bottom-left':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         bottom: 0,
-                        left: 0,
+                        left: 0
                     });
                     break;
                 case 'bottom-middle':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         bottom: 0,
                         left:' 50%',
@@ -103,19 +96,24 @@ var app = {
                     });
                     break;
                 case 'bottom-right':
-                    console.log(watermarkPosition);
                     watermarkWrapper.css({
                         bottom: 0,
                         right: 0
                     });
             }
-
-            console.log(watermarkPosition);
         });
     },
     setWatermarkPositionBySpinner: function() {
         var self = this;
 
+        $.each($('.js-coord__counter'), function() {
+            $(this).spinner({
+                icons: {
+                    up: 'spinner-up-btn',
+                    down: 'spinner-down-btn'
+                }
+            })
+        });
     },
     setWatermarkOpacity: function() {
         var self = this;

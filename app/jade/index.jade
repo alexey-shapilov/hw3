@@ -18,6 +18,8 @@ html
         link(href='http://fonts.googleapis.com/css?family=Roboto:300,500italic,400&subset=cyrillic,latin', rel='stylesheet', type='text/css')
 
         link(rel='stylesheet', href="../css/ui/jquery-ui.css")
+        link(rel='stylesheet', href="../css/ui/spinner.css")
+        link(rel='stylesheet', href="../css/ui/slider.css")
         link(rel='stylesheet', href="../css/ui/ui.css")
     body
         <!--[if lt IE 7]>
@@ -84,16 +86,12 @@ html
                                     .position__coordinates
                                         .switch__wrap
                                             label.coord__label X
-                                            input.coord__counter(id="coord__x" name="coord__x" type="text" value="0")
-                                            .coord__spinners
-                                                a.coord__spinners-up(href="#") Больше
-                                                a.coord__spinners-down(href="#") Меньше
+                                            input.coord__counter.js-coord__counter(id="coord__x" name="coord__x" type="text" value="0")
+
                                         .switch__wrap
                                             label.coord__label Y
-                                            input.coord__counter(id="coord__y" name="coord__y" type="text" value="0")
-                                            .coord__spinners
-                                                a.coord__spinners-up(href="#") Больше
-                                                a.coord__spinners-down(href="#") Меньше
+                                            input.coord__counter.js-coord__counter(id="coord__y" name="coord__y" type="text" value="0")
+
                             div.settings-block.block__border-none
                                 .block__header
                                     h3 Прозрачность
