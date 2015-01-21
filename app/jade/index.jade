@@ -1,16 +1,109 @@
-html(lang="ru")
-   head
-      title loftschool homework-3
+doctype html
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv = "X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
 
-      meta(charset="utf-8")
-      meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
-      meta(name='viewport' content='width=device-width, initial-scale=1')
+        title loftschool homework-3
 
-      link(rel='icon' href='' type='image/x-icon')
-      link(rel='shortcut icon' href='' type='image/x-icon')
+        link(rel='icon' href='' type='image/x-icon')
+        link(rel='shortcut icon' href='' type='image/x-icon')
 
-   body
+        //Google Fonts
+        link(href='http://fonts.googleapis.com/css?family=Roboto:300,500italic,400&subset=cyrillic,latin', rel='stylesheet', type='text/css')
 
+        link(rel='stylesheet', href="../css/ui/jquery-ui.css")
+        link(rel='stylesheet', href="../css/ui/ui.css")
+    body
+        <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        .wrapper
+            .maincontent
+                .container
+                    .block__left
+                        h1 Генератор водяных знаков
+                        .block__left-result
+                    .block__right
+                        h2 Настройки
+                        .settings-block
+                            .upload-file-row
+                                label.file-label(for="upload-pic") Исходное изображение
+                                .file
+                                    input.file__upload-pic(id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required)
+                                    .file__inputbox
+                                        span Загрузите изображение
+                                    .file__btn
+                            .upload-file-row
+                                label.file-label(for="upload-wm") Водяной знак
+                                .file
+                                    input.file__upload-pic(id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required)
+                                    .file__inputbox
+                                        span Загрузите изображение
+                                    .file__btn
+                        .settings-block
+                            .block__header
+                                h3 Положение
+                            .switch__btn
+                                a.switch__btn-four(href="#")
+                                a.switch__btn-one.active(href="#")
+                            .position
+                                .position__visual
+                                    table.position__visual-box
+                                        tbody.box__body
+                                            tr.box__row
+                                                td.box__cell
+                                                    a.box__cell-btn.active(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                            tr.box__row
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                            tr.box__row
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                                td.box__cell
+                                                    a.box__cell-btn(href="#")
+                                .position__coordinates
+                                    .switch__wrap
+                                        label.coord__label X
+                                        input.coord__counter(id="coord__x" name="coord__x" type="text" value="0")
+                                        .coord__spinners
+                                            a.coord__spinners-up(href="#") Больше
+                                            a.coord__spinners-down(href="#") Меньше
+                                    .switch__wrap
+                                        label.coord__label Y
+                                        input.coord__counter(id="coord__y" name="coord__y" type="text" value="0")
+                                        .coord__spinners
+                                            a.coord__spinners-up(href="#") Больше
+                                            a.coord__spinners-down(href="#") Меньше
+                        .settings-block.block__border-none
+                            .block__header
+                                h3 Прозрачность
+                            .ui-slider
+                                .ui-slider-handle
+                        .button-block
+                            button.btn__reset(type="reset") Сброс
+                            button.btn__submit(type="submit") Скачать
+            .empty
+        footer.footer
+            .container
+                .footer__text
+                    p &copy; 2014, Это мой сайт, пожалуйста, не копируйте и не воруйте его
 
-      script(type='text/javascript', src='../js/libs/jquery/jquery.min.js')
-      script(type='text/javascript', src='../js/app.js')
+        script(type='text/javascript', src='/js/libs/jquery/jquery.min.js')
+        script(type='text/javascript', src='/js/libs/jquery-ui/jquery-ui.min.js')
+        script(type='text/javascript', src='/js/app.js')
