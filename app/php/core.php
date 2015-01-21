@@ -1,8 +1,6 @@
 <?php
-function getJs(){
-
-    if (isset($_POST['paddingLeft'])  AND isset($_POST['paddingTop']) AND  isset($_POST['opacity'])){
-
+function get_js(){
+    if (isset($_POST['paddingLeft']) AND isset($_POST['paddingTop']) AND isset($_POST['opacity'])){
         $_SESSION["paddingLeft"] = $_POST['paddingLeft'];
         $_SESSION["paddingTop"] = $_POST['paddingTop'];
         $_SESSION["opacity"] = $_POST['opacity'];
@@ -13,8 +11,7 @@ function getJs(){
 
 }// берёт данные из js (готово 40% {нет js})
 
-function watermarkCreate($userDir){
-
+function watermark_create($userDir){
     $stampPaddingLeft = $_SESSION["paddingLeft"];//отступ снизу
     $stampPaddingTop = $_SESSION["paddingTop"];//отступ сверху
     $stampOpacity = $_SESSION["opacity"]; // прозрачность в процентах
@@ -22,21 +19,18 @@ function watermarkCreate($userDir){
     $mainImage = "tmp/$userDir/main.jpg";//картинка фона
     $stampImage = "tmp/$userDir/stamp.jpeg";//картинка водного знака
 
-
-
     $image = image_create($mainImage);
     $stamp = image_create($stampImage);
 
     $stampWidth = imagesx($stamp);
     $stampHeight = imagesy($stamp);
 
-
     imagecopymerge( $image, $stamp, $stampPaddingLeft, $stampPaddingTop, 0, 0, $stampWidth, $stampHeight, $stampOpacity);// Слияние штампа с фотографией.
     imagepng($image, "tmp/$userDir/watermark.png");// Сохранение фотографии в файл
     imagedestroy($image); //освобождение памяти
 } //создаёт водный знак (готово 80% {нет зависимости от типа файлов})
 
-function createTempDir (){
+function create_temp_dir (){
     if (isset($_SESSION["ID"])){
         $userDir = $_SESSION["ID"];
         mkdir("temp/$userDir");
@@ -50,12 +44,12 @@ function createTempDir (){
     //  todo    создание временной папки {кажется должно быть не так}
 }   //в разработке
 
-function fileUpload(){
+function file_upload(){
 
     //  todo    загрузка  файлов на сервер  во времнную папку {true if success}
 }       //в разработке
 
-function fileDownload(){
+function file_download(){
     $watermark = "tmp/$userDir/watermark.png";//картинка после наложения
 
 //  todo    скачивание  файлов  с сервера из временной дирректории {}
@@ -94,4 +88,4 @@ function image_create($image){
         echo "Тип файла не поддерживается.";
     }
     return $image;
-} //
+} // Возвращает созданное изображение {с зависимостью от типа картинки}
