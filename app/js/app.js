@@ -108,9 +108,19 @@ var app = {
 
         $.each($('.js-coord__counter'), function() {
             $(this).spinner({
+                min: 0,
                 icons: {
                     up: 'spinner-up-btn',
                     down: 'spinner-down-btn'
+                },
+                spin: function( event, ui ) {
+                    var orientation = $(this).data('orientation');
+
+                    if (orientation === 'x-coordinate') {
+                        $('.watermark-wrapper').css({left: ui.value});
+                    } else if (orientation === 'y-coordinate') {
+                        $('.watermark-wrapper').css({top: ui.value});
+                    }
                 }
             })
         });
