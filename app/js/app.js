@@ -12,6 +12,7 @@ var app = {
         self.setWatermarkOpacity();
         self.setWatermarkPositionByVisualPanel();
         self.setWatermarkPositionBySpinner();
+        self.makeWatermarkImgDraggable();
 
         console.log('addListeners');
     },
@@ -26,6 +27,17 @@ var app = {
         watermarkWrapper.css({
             top: 0,
             left: 0
+        });
+    },
+    makeWatermarkImgDraggable: function() {
+        var self = this;
+
+        $('.watermark-wrapper').draggable({
+            containment: 'parent',
+            stop: function( event, ui ) {
+                $('#coord__x').val(ui.position.left);
+                $('#coord__y').val(ui.position.top);
+            }
         });
     },
     setWatermarkPositionByVisualPanel: function() {
