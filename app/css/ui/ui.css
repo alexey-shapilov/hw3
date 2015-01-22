@@ -323,7 +323,7 @@ footer {
 }
 
 .position {
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 }
 .position:before, .position:after {
   content: "";
@@ -377,7 +377,7 @@ footer {
 }
 
 .switch__wrap {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .coord__label {
@@ -407,6 +407,7 @@ footer {
 
 .button-block {
   padding: 0 10px;
+  margin-bottom: 15px;
 }
 .button-block:before, .button-block:after {
   content: "";
