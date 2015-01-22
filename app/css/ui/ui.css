@@ -180,15 +180,18 @@ footer {
 .bg {
   width: 100%;
   height: 100%;
-  background: rgba(255, 0, 0, 0.6);
 }
 
 .watermark-wrapper {
   position: absolute;
-  background: url("http://lorempixel.com/180/180");
   width: 180px;
   height: 180px;
   cursor: pointer;
+}
+
+.watermark-img {
+  width: 100%;
+  height: 100%;
 }
 
 .block__right {
@@ -323,7 +326,7 @@ footer {
 }
 
 .position {
-  margin-bottom: 10px;
+  margin-bottom: 35px;
 }
 .position:before, .position:after {
   content: "";
@@ -377,7 +380,7 @@ footer {
 }
 
 .switch__wrap {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .coord__label {
@@ -407,7 +410,6 @@ footer {
 
 .button-block {
   padding: 0 10px;
-  margin-bottom: 15px;
 }
 .button-block:before, .button-block:after {
   content: "";

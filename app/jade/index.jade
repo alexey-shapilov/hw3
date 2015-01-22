@@ -32,7 +32,9 @@ html
                         h1 Генератор водяных знаков
                         .block__left-result
                             div.bg
+                                img.bg-img(src='http://lorempixel.com/600/600')
                             div.watermark-wrapper
+                                img.watermark-img(src='http://lorempixel.com/180/180')
                     .block__right
                         h2 Настройки
 
@@ -41,14 +43,14 @@ html
                                 .upload-file-row
                                     label.file-label(for="upload-pic") Исходное изображение
                                     .file
-                                        input.file__upload-pic(id="upload-pic" name="upload-pic" type="file" placeholder="Загрузите изображение" required)
+                                        input.file__upload-pic(id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
                                         .file__inputbox
                                             span Загрузите изображение
                                         .file__btn
                                 .upload-file-row
                                     label.file-label(for="upload-wm") Водяной знак
                                     .file
-                                        input.file__upload-pic(id="upload-wm" name="upload-wm" type="file" placeholder="Загрузите изображение" required)
+                                        input.file__upload-pic(id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
                                         .file__inputbox
                                             span Загрузите изображение
                                         .file__btn
@@ -106,6 +108,12 @@ html
                 .footer__text
                     p &copy; 2014, Это мой сайт, пожалуйста, не копируйте и не воруйте его
 
-        script(type='text/javascript', src='/js/libs/jquery/jquery.min.js')
-        script(type='text/javascript', src='/js/libs/jquery-ui/jquery-ui.min.js')
-        script(type='text/javascript', src='/js/app.js')
+        script(type='text/javascript', src='../js/libs/jquery/jquery.min.js')
+        script(type='text/javascript', src='../js/libs/jquery-ui/jquery-ui.min.js')
+
+        script(type='text/javascript', src='../js/test-file-uploader/jquery.ui.widget.js')
+        script(type='text/javascript', src='../js/test-file-uploader/jquery.iframe-transport.js')
+        script(type='text/javascript', src='../js/test-file-uploader/jquery.fileupload.js')
+
+        script(type='text/javascript', src='../js/app.js')
+
