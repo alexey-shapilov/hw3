@@ -8,17 +8,27 @@ var app = {
     addListeners: function() {
         var self = this;
 
+        self.downloadBackgroundImg();
         self.downloadWatermarkImg();
         self.setWatermarkOpacity();
         self.setWatermarkPositionByVisualPanel();
         self.setWatermarkPositionBySpinner();
         self.makeWatermarkImgDraggable();
+        self.makeBackgroundImgDraggable();
 
-        console.log('addListeners');
     },
     downloadBackgroundImg: function() {
         var self = this;
 
+        $('#upload-pic').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                console.log(data);
+                console.log(data.result.files[0].url);
+
+                $('.bg-img').attr('src', data.result.files[0].url);
+            }
+        });
     },
     downloadWatermarkImg: function() {
         var self = this,
@@ -27,6 +37,33 @@ var app = {
         watermarkWrapper.css({
             top: 0,
             left: 0
+        });
+
+        $('#upload-wm').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                console.log(data);
+
+                console.log(data.result.files[0].url);
+                $('.watermark-img').attr('src', data.result.files[0].url);
+
+            }
+        });
+    },
+    makeBackgroundImgDraggable: function() {
+        var self = this;
+
+        $('.bg-img').draggable();
+    },
+    makeWatermarkImgDraggable: function() {
+        var self = this;
+
+        $('.watermark-wrapper').draggable({
+            containment: 'parent',
+            stop: function( event, ui ) {
+                $('#coord__x').val(ui.position.left);
+                $('#coord__y').val(ui.position.top);
+            }
         });
     },
     makeWatermarkImgDraggable: function() {
