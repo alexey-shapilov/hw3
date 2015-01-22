@@ -33,7 +33,6 @@ html
                         .block__left-result
                             div.bg
                                 img.bg-img(src='http://lorempixel.com/600/600')
-                            div.watermark-wrapper
                                 img.watermark-img(src='http://lorempixel.com/180/180')
                     .block__right
                         h2 Настройки
@@ -45,14 +44,14 @@ html
                                     .file
                                         input.file__upload-pic(id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
                                         .file__inputbox
-                                            span Загрузите изображение
+                                            span.upload-bg-placeholder Загрузите изображение
                                         .file__btn
                                 .upload-file-row
                                     label.file-label(for="upload-wm") Водяной знак
                                     .file
                                         input.file__upload-pic(id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
                                         .file__inputbox
-                                            span Загрузите изображение
+                                            span.upload-wm-placeholder Загрузите изображение
                                         .file__btn
                             div.settings-block
                                 .block__header
@@ -111,9 +110,9 @@ html
         script(type='text/javascript', src='../js/libs/jquery/jquery.min.js')
         script(type='text/javascript', src='../js/libs/jquery-ui/jquery-ui.min.js')
 
-        script(type='text/javascript', src='../js/test-file-uploader/jquery.ui.widget.js')
-        script(type='text/javascript', src='../js/test-file-uploader/jquery.iframe-transport.js')
-        script(type='text/javascript', src='../js/test-file-uploader/jquery.fileupload.js')
+        script(type='text/javascript', src='../js/libs/jquery-file-upload/jquery.ui.widget.js')
+        script(type='text/javascript', src='../js/libs/jquery-file-upload/jquery.iframe-transport.js')
+        script(type='text/javascript', src='../js/libs/jquery-file-upload/jquery.fileupload.js')
 
         script(type='text/javascript', src='../js/app.js')
 

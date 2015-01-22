@@ -16,11 +16,32 @@ var app = {
         self.makeWatermarkImgDraggable();
         self.makeBackgroundImgDraggable();
     },
+    resetWatermarkOpacity: function() {
+        var self = this,
+            watermarkWrapper = $('.watermark-img');
+
+        watermarkWrapper.css({
+            opacity: .5
+        });
+    },
+    resetWatermarkPosition: function() {
+        var self = this,
+            watermarkWrapper = $('.watermark-img');
+
+        watermarkWrapper.css({
+            top: 0,
+            left: 0
+        });
+    },
     downloadBackgroundImg: function() {
         var self = this;
 
         $('#upload-pic').fileupload({
             dataType: 'json',
+            add: function (e, data) {
+                $('.upload-bg-placeholder').html(data.originalFiles[0].name);
+                data.submit();
+            },
             done: function (e, data) {
                 console.log(data);
                 console.log(data.result.files[0].url);
@@ -30,22 +51,18 @@ var app = {
         });
     },
     downloadWatermarkImg: function() {
-        var self = this,
-            watermarkWrapper = $('.watermark-wrapper');
+        var self = this;
 
-        watermarkWrapper.css({
-            top: 0,
-            left: 0
-        });
+        self.resetWatermarkPosition();
 
         $('#upload-wm').fileupload({
             dataType: 'json',
+            add: function (e, data) {
+                $('.upload-wm-placeholder').html(data.originalFiles[0].name);
+                data.submit();
+            },
             done: function (e, data) {
-                console.log(data);
-
-                console.log(data.result.files[0].url);
                 $('.watermark-img').attr('src', data.result.files[0].url);
-
             }
         });
     },
@@ -57,7 +74,7 @@ var app = {
     makeWatermarkImgDraggable: function() {
         var self = this;
 
-        $('.watermark-wrapper').draggable({
+        $('.watermark-img').draggable({
             containment: 'parent',
             stop: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
@@ -70,7 +87,7 @@ var app = {
 
         $('.js-set-watermark-position').on('click', function(e) {
             var targetElement = $(e.currentTarget),
-                watermarkWrapper = $('.watermark-wrapper'),
+                watermarkWrapper = $('.watermark-img'),
                 watermarkPosition = targetElement.data('watermarkPosition'),
                 positionBtn = targetElement.children('.box__cell-btn');
 
@@ -78,6 +95,8 @@ var app = {
             positionBtn.addClass('active');
 
             watermarkWrapper.removeAttr('style');
+            watermarkWrapper.css({ opacity: self.calculateOpacityValue($('.ui-slider').slider('value')) });
+
             switch (watermarkPosition) {
                 case 'top-left':
                     watermarkWrapper.css({
@@ -101,6 +120,7 @@ var app = {
                 case 'center-left':
                     watermarkWrapper.css({
                         top: '50%',
+                        left: 0,
                         marginTop: '-90px'
                     });
                     break;
@@ -154,22 +174,29 @@ var app = {
                     var orientation = $(this).data('orientation');
 
                     if (orientation === 'x-coordinate') {
-                        $('.watermark-wrapper').css({left: ui.value});
+                        $('.watermark-img').css({left: ui.value});
                     } else if (orientation === 'y-coordinate') {
-                        $('.watermark-wrapper').css({top: ui.value});
+                        $('.watermark-img').css({top: ui.value});
                     }
                 }
             })
         });
     },
     setWatermarkOpacity: function() {
-        var self = this;
+        var self = this,
+            watermarkDefaultOpacity = 50;
+
+        $('.watermark-img').css({opacity: self.calculateOpacityValue(watermarkDefaultOpacity)});
 
         $('.ui-slider').slider({
+            value: watermarkDefaultOpacity,
             slide: function (event, ui) {
-                $('.watermark-wrapper').css({opacity: 1 - ui.value / 100});
+                $('.watermark-img').css({opacity: self.calculateOpacityValue(ui.value)});
             }
         });
+    },
+    calculateOpacityValue: function (value) {
+        return 1 - value / 100;
     },
     downloadImg: function() {
         var self = this;

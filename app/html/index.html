@@ -27,8 +27,7 @@
           <div class="block__left">
             <h1>Генератор водяных знаков</h1>
             <div class="block__left-result">
-              <div class="bg"><img src="http://lorempixel.com/600/600" class="bg-img"></div>
-              <div class="watermark-wrapper"><img src="http://lorempixel.com/180/180" class="watermark-img"></div>
+              <div class="bg"><img src="http://lorempixel.com/600/600" class="bg-img"><img src="http://lorempixel.com/180/180" class="watermark-img"></div>
             </div>
           </div>
           <div class="block__right">
@@ -39,7 +38,7 @@
                   <label for="upload-pic" class="file-label">Исходное изображение</label>
                   <div class="file">
                     <input id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required class="file__upload-pic">
-                    <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                    <div class="file__inputbox"><span class="upload-bg-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
                 </div>
@@ -47,7 +46,7 @@
                   <label for="upload-wm" class="file-label">Водяной знак</label>
                   <div class="file">
                     <input id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required class="file__upload-pic">
-                    <div class="file__inputbox"><span>Загрузите изображение</span></div>
+                    <div class="file__inputbox"><span class="upload-wm-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
                 </div>
