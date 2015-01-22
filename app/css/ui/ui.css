@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'fira_sanslight';
-  src: url("/fonts/Fira/firasans-light.eot");
-  src: url("/fonts/Fira/firasans-light.eot?#iefix") format("embedded-opentype"), url("/fonts/Fira/firasans-light.woff") format("woff"), url("/fonts/Fira/firasans-light.ttf") format("truetype");
+  src: url("../../fonts/Fira/firasans-light.eot");
+  src: url("../../fonts/Fira/firasans-light.eot?#iefix") format("embedded-opentype"), url("../../fonts/Fira/firasans-light.woff") format("woff"), url("../../fonts/Fira/firasans-light.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'SEGOEUIL';
-  src: url("/fonts/Segoe/SEGOEUIL.eot");
-  src: url("/fonts/Segoe/SEGOEUIL.eot?#iefix") format("embedded-opentype"), url("/fonts/Segoe/SEGOEUIL.woff") format("woff"), url("/fonts/Segoe/SEGOEUIL.ttf") format("truetype");
+  src: url("../../fonts/Segoe/SEGOEUIL.eot");
+  src: url("../../fonts/Segoe/SEGOEUIL.eot?#iefix") format("embedded-opentype"), url("../../fonts/Segoe/SEGOEUIL.woff") format("woff"), url("../../fonts/Segoe/SEGOEUIL.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
