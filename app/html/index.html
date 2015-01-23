@@ -33,12 +33,13 @@
           </div>
           <div class="block__right">
             <h2>Настройки</h2>
-            <form id="save-img-form">
+            <form id="watermark-img-generator-form" action="javascript:void(0)">
               <div class="settings-block">
                 <div class="upload-file-row">
                   <label for="upload-pic" class="file-label">Исходное изображение</label>
                   <div class="file">
-                    <input id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required class="file__upload-pic">
+                    <input id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
+                    <input type="text" id="bg-img" name="bgImg" value="" class="hide">
                     <div class="file__inputbox"><span class="upload-bg-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -46,7 +47,8 @@
                 <div class="upload-file-row">
                   <label for="upload-wm" class="file-label">Водяной знак</label>
                   <div class="file">
-                    <input id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required class="file__upload-pic">
+                    <input id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
+                    <input type="text" id="wm-img" name="wmImg" value="" class="hide">
                     <div class="file__inputbox"><span class="upload-wm-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -82,11 +84,11 @@
                   <div class="position__coordinates">
                     <div class="switch__wrap">
                       <label class="coord__label">X</label>
-                      <input id="coord__x" name="coord__x" type="text" value="0" data-orientation="x-coordinate" class="coord__counter js-coord__counter">
+                      <input id="coord__x" name="wmCoordX" type="text" value="0" data-orientation="x-coordinate" class="coord__counter js-coord__counter">
                     </div>
                     <div class="switch__wrap">
                       <label class="coord__label">Y</label>
-                      <input id="coord__y" name="coord__y" type="text" value="0" data-orientation="y-coordinate" class="coord__counter js-coord__counter">
+                      <input id="coord__y" name="wmCoordY" type="text" value="0" data-orientation="y-coordinate" class="coord__counter js-coord__counter">
                     </div>
                   </div>
                 </div>
@@ -97,6 +99,7 @@
                 </div>
                 <div class="ui-slider">
                   <div class="ui-slider-handle"></div>
+                  <input id="watermark-opacity-value" name="wmOpacity" type="text" value="0.5" class="hide">
                 </div>
               </div>
               <div class="button-block">

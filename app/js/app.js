@@ -15,6 +15,7 @@ var app = {
         self.setWatermarkPositionBySpinner();
         self.makeWatermarkImgDraggable();
         self.makeBackgroundImgDraggable();
+        self.downloadImg();
     },
     resetWatermarkOpacity: function() {
         var self = this,
@@ -51,6 +52,7 @@ var app = {
             done: function (e, data) {
                 $('.upload-bg-placeholder').html(data.originalFiles[0].name);
                 $('.bg-img').attr('src', data.result.files[0].url);
+                $('#bg-img').val(data.result.files[0].url);
                 self.hideLoader();
             },
             fail: function(e, data) {
@@ -73,6 +75,7 @@ var app = {
             done: function (e, data) {
                 $('.upload-wm-placeholder').html(data.originalFiles[0].name);
                 $('.watermark-img').attr('src', data.result.files[0].url);
+                $('#wm-img').val(data.result.files[0].url);
                 self.hideLoader();
             },
             fail: function(e, data) {
@@ -84,13 +87,16 @@ var app = {
     makeBackgroundImgDraggable: function() {
         var self = this;
 
-        $('.bg-img').draggable();
+        $('.bg-img').draggable({
+            grid: [ 1, 1 ]
+        });
     },
     makeWatermarkImgDraggable: function() {
         var self = this;
 
         $('.watermark-img').draggable({
             containment: 'parent',
+            grid: [ 1, 1 ],
             stop: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
                 $('#coord__y').val(ui.position.top);
@@ -207,6 +213,9 @@ var app = {
             value: watermarkDefaultOpacity,
             slide: function (event, ui) {
                 $('.watermark-img').css({opacity: self.calculateOpacityValue(ui.value)});
+            },
+            stop: function(event, ui) {
+                $('#watermark-opacity-value').val(self.calculateOpacityValue(ui.value))
             }
         });
     },
@@ -216,6 +225,28 @@ var app = {
     downloadImg: function() {
         var self = this;
 
+        $('#watermark-img-generator-form').submit(function(e){
+            e.preventDefault();
+            var $form = $(this);
+
+            console.log($form.serialize());
+
+            self.showLoader();
+            $.ajax({
+                url: '../php/watermark-img-generator.php',
+                type: 'POST',
+                data: $(this).serialize()
+            })
+                .done(function(data) {
+                    console.log(data);
+
+                    self.hideLoader();
+                }).fail(function(error) {
+                    //console.log(error);
+                }).always(function() {
+                    //console.log('always');
+                });
+        });
     }
 };
 

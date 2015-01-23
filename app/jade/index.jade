@@ -38,19 +38,21 @@ html
                     .block__right
                         h2 Настройки
 
-                        form(id="save-img-form")
+                        form(id="watermark-img-generator-form", action="javascript:void(0)")
                             div.settings-block
                                 .upload-file-row
                                     label.file-label(for="upload-pic") Исходное изображение
                                     .file
-                                        input.file__upload-pic(id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
+                                        input.file__upload-pic(id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple)
+                                        input.hide(type='text' id='bg-img' name='bgImg' value='')
                                         .file__inputbox
                                             span.upload-bg-placeholder Загрузите изображение
                                         .file__btn
                                 .upload-file-row
                                     label.file-label(for="upload-wm") Водяной знак
                                     .file
-                                        input.file__upload-pic(id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple required)
+                                        input.file__upload-pic(id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple)
+                                        input.hide(type='text' id='wm-img' name='wmImg' value='')
                                         .file__inputbox
                                             span.upload-wm-placeholder Загрузите изображение
                                         .file__btn
@@ -88,17 +90,18 @@ html
                                     .position__coordinates
                                         .switch__wrap
                                             label.coord__label X
-                                            input.coord__counter.js-coord__counter(id="coord__x" name="coord__x" type="text" value="0" data-orientation='x-coordinate')
+                                            input.coord__counter.js-coord__counter(id="coord__x" name="wmCoordX" type="text" value="0" data-orientation='x-coordinate')
 
                                         .switch__wrap
                                             label.coord__label Y
-                                            input.coord__counter.js-coord__counter(id="coord__y" name="coord__y" type="text" value="0" data-orientation='y-coordinate')
+                                            input.coord__counter.js-coord__counter(id="coord__y" name="wmCoordY" type="text" value="0" data-orientation='y-coordinate')
 
                             div.settings-block.block__border-none
                                 .block__header
                                     h3 Прозрачность
                                 .ui-slider
                                     .ui-slider-handle
+                                    input.hide(id='watermark-opacity-value', name='wmOpacity' type='text', value='0.5')
                             div.button-block
                                 input.btn__reset(type="reset", value="Сброс")
                                 input.btn__submit(type="submit", value="Скачать")
