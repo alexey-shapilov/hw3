@@ -98,7 +98,7 @@ var app = {
         $('.watermark-img').draggable({
             containment: 'parent',
             grid: [ 1, 1 ],
-            stop: function( event, ui ) {
+            drag: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
                 $('#coord__y').val(ui.position.top);
             }
