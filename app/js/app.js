@@ -33,6 +33,12 @@ var app = {
             left: 0
         });
     },
+    showLoader: function() {
+        $('.js-loader').fadeIn(100);
+    },
+    hideLoader: function() {
+        $('.js-loader').fadeOut(400);
+    },
     downloadBackgroundImg: function() {
         var self = this;
 
@@ -41,12 +47,14 @@ var app = {
             add: function (e, data) {
                 $('.upload-bg-placeholder').html(data.originalFiles[0].name);
                 data.submit();
+                self.showLoader();
             },
             done: function (e, data) {
                 console.log(data);
                 console.log(data.result.files[0].url);
 
                 $('.bg-img').attr('src', data.result.files[0].url);
+                self.hideLoader();
             }
         });
     },
@@ -60,9 +68,11 @@ var app = {
             add: function (e, data) {
                 $('.upload-wm-placeholder').html(data.originalFiles[0].name);
                 data.submit();
+                self.showLoader();
             },
             done: function (e, data) {
                 $('.watermark-img').attr('src', data.result.files[0].url);
+                self.hideLoader();
             }
         });
     },
