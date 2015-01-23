@@ -34,10 +34,10 @@ var app = {
         });
     },
     showLoader: function() {
-        $('.js-loader').fadeIn(100);
+        $('.js-loader').fadeIn();
     },
     hideLoader: function() {
-        $('.js-loader').fadeOut(400);
+        $('.js-loader').fadeOut();
     },
     downloadBackgroundImg: function() {
         var self = this;
@@ -45,15 +45,16 @@ var app = {
         $('#upload-pic').fileupload({
             dataType: 'json',
             add: function (e, data) {
-                $('.upload-bg-placeholder').html(data.originalFiles[0].name);
                 data.submit();
                 self.showLoader();
             },
             done: function (e, data) {
-                console.log(data);
-                console.log(data.result.files[0].url);
-
+                $('.upload-bg-placeholder').html(data.originalFiles[0].name);
                 $('.bg-img').attr('src', data.result.files[0].url);
+                self.hideLoader();
+            },
+            fail: function(e, data) {
+                alert('Error: ' + data.textStatus);
                 self.hideLoader();
             }
         });
@@ -66,12 +67,16 @@ var app = {
         $('#upload-wm').fileupload({
             dataType: 'json',
             add: function (e, data) {
-                $('.upload-wm-placeholder').html(data.originalFiles[0].name);
                 data.submit();
                 self.showLoader();
             },
             done: function (e, data) {
+                $('.upload-wm-placeholder').html(data.originalFiles[0].name);
                 $('.watermark-img').attr('src', data.result.files[0].url);
+                self.hideLoader();
+            },
+            fail: function(e, data) {
+                alert('Error: ' + data.textStatus);
                 self.hideLoader();
             }
         });
