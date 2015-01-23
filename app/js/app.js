@@ -15,6 +15,30 @@ var app = {
         self.setWatermarkPositionBySpinner();
         self.makeWatermarkImgDraggable();
         self.makeBackgroundImgDraggable();
+        self.downloadImg();
+    },
+    resetWatermarkOpacity: function() {
+        var self = this,
+            watermarkWrapper = $('.watermark-img');
+
+        watermarkWrapper.css({
+            opacity: .5
+        });
+    },
+    resetWatermarkPosition: function() {
+        var self = this,
+            watermarkWrapper = $('.watermark-img');
+
+        watermarkWrapper.css({
+            top: 0,
+            left: 0
+        });
+    },
+    showLoader: function() {
+        $('.js-loader').fadeIn();
+    },
+    hideLoader: function() {
+        $('.js-loader').fadeOut();
 
     },
     downloadBackgroundImg: function() {
@@ -22,44 +46,58 @@ var app = {
 
         $('#upload-pic').fileupload({
             dataType: 'json',
+            add: function (e, data) {
+                data.submit();
+                self.showLoader();
+            },
             done: function (e, data) {
-                console.log(data);
-                console.log(data.result.files[0].url);
-
+                $('.upload-bg-placeholder').html(data.originalFiles[0].name);
                 $('.bg-img').attr('src', data.result.files[0].url);
+                $('#bg-img').val(data.result.files[0].url);
+                self.hideLoader();
+            },
+            fail: function(e, data) {
+                alert('Error: ' + data.textStatus);
+                self.hideLoader();
             }
         });
     },
     downloadWatermarkImg: function() {
-        var self = this,
-            watermarkWrapper = $('.watermark-wrapper');
+        var self = this;
 
-        watermarkWrapper.css({
-            top: 0,
-            left: 0
-        });
+        self.resetWatermarkPosition();
 
         $('#upload-wm').fileupload({
             dataType: 'json',
+            add: function (e, data) {
+                data.submit();
+                self.showLoader();
+            },
             done: function (e, data) {
-                console.log(data);
-
-                console.log(data.result.files[0].url);
+                $('.upload-wm-placeholder').html(data.originalFiles[0].name);
                 $('.watermark-img').attr('src', data.result.files[0].url);
-
+                $('#wm-img').val(data.result.files[0].url);
+                self.hideLoader();
+            },
+            fail: function(e, data) {
+                alert('Error: ' + data.textStatus);
+                self.hideLoader();
             }
         });
     },
     makeBackgroundImgDraggable: function() {
         var self = this;
 
-        $('.bg-img').draggable();
+        $('.bg-img').draggable({
+            grid: [ 1, 1 ]
+        });
     },
     makeWatermarkImgDraggable: function() {
         var self = this;
 
-        $('.watermark-wrapper').draggable({
+        $('.watermark-img').draggable({
             containment: 'parent',
+            grid: [ 1, 1 ],
             stop: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
                 $('#coord__y').val(ui.position.top);
@@ -72,7 +110,7 @@ var app = {
 
         $('.js-set-watermark-position').on('click', function(e) {
             var targetElement = $(e.currentTarget),
-                watermarkWrapper = $('.watermark-wrapper'),
+                watermarkWrapper = $('.watermark-img'),
                 watermarkPosition = targetElement.data('watermarkPosition'),
                 positionBtn = targetElement.children('.box__cell-btn');
 
@@ -80,6 +118,8 @@ var app = {
             positionBtn.addClass('active');
 
             watermarkWrapper.removeAttr('style');
+            watermarkWrapper.css({ opacity: self.calculateOpacityValue($('.ui-slider').slider('value')) });
+
             switch (watermarkPosition) {
                 case 'top-left':
                     watermarkWrapper.css({
@@ -103,6 +143,7 @@ var app = {
                 case 'center-left':
                     watermarkWrapper.css({
                         top: '50%',
+                        left: 0,
                         marginTop: '-90px'
                     });
                     break;
@@ -156,26 +197,58 @@ var app = {
                     var orientation = $(this).data('orientation');
 
                     if (orientation === 'x-coordinate') {
-                        $('.watermark-wrapper').css({left: ui.value});
+                        $('.watermark-img').css({left: ui.value});
                     } else if (orientation === 'y-coordinate') {
-                        $('.watermark-wrapper').css({top: ui.value});
+                        $('.watermark-img').css({top: ui.value});
                     }
                 }
             })
         });
     },
     setWatermarkOpacity: function() {
-        var self = this;
+        var self = this,
+            watermarkDefaultOpacity = 50;
+
+        $('.watermark-img').css({opacity: self.calculateOpacityValue(watermarkDefaultOpacity)});
 
         $('.ui-slider').slider({
+            value: watermarkDefaultOpacity,
             slide: function (event, ui) {
-                $('.watermark-wrapper').css({opacity: 1 - ui.value / 100});
+                $('.watermark-img').css({opacity: self.calculateOpacityValue(ui.value)});
+            },
+            stop: function(event, ui) {
+                $('#watermark-opacity-value').val(self.calculateOpacityValue(ui.value))
             }
         });
+    },
+    calculateOpacityValue: function (value) {
+        return 1 - value / 100;
     },
     downloadImg: function() {
         var self = this;
 
+        $('#watermark-img-generator-form').submit(function(e){
+            e.preventDefault();
+            var $form = $(this);
+
+            console.log($form.serialize());
+
+            self.showLoader();
+            $.ajax({
+                url: '../php/watermark-img-generator.php',
+                type: 'POST',
+                data: $(this).serialize()
+            })
+                .done(function(data) {
+                    console.log(data);
+
+                    self.hideLoader();
+                }).fail(function(error) {
+                    //console.log(error);
+                }).always(function() {
+                    //console.log('always');
+                });
+        });
     }
 };
 
