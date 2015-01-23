@@ -222,7 +222,7 @@ var app = {
         });
     },
     calculateOpacityValue: function (value) {
-        return 1 - value / 100;
+        return value / 100;
     },
     downloadImg: function() {
         var self = this;
