@@ -240,6 +240,7 @@ var app = {
                 .done(function(data) {
                     console.log(data);
 
+                    $('body').append("<iframe src='../php/download.php'></iframe>");
                     self.hideLoader();
                 }).fail(function(error) {
                     //console.log(error);
