@@ -52,7 +52,7 @@
                     <execution>
                         <id>grunt build</id>
                         <goals>
-                            <goal>gulp buildApp</goal>
+                            <goal>gulp</goal>
                         </goals>
                         <configuration>
                             <arguments>--no-color</arguments>
