@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     del = require('del'),
     jade = require('gulp-jade'),
-    connect = require('gulp-connect'),
     compass = require('gulp-compass');
 
 var basePath = {
@@ -75,5 +74,6 @@ gulp.task('buildJs', ['buildCss'], function() {
 gulp.task('riba', function() {
     console.log('riba');
 });
+
 
 gulp.task('default', ['riba']);
