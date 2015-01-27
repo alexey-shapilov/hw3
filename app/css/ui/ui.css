@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'fira_sanslight';
-  src: url("/fonts/Fira/firasans-light.eot");
-  src: url("/fonts/Fira/firasans-light.eot?#iefix") format("embedded-opentype"), url("/fonts/Fira/firasans-light.woff") format("woff"), url("/fonts/Fira/firasans-light.ttf") format("truetype");
+  src: url("../../fonts/Fira/firasans-light.eot");
+  src: url("../../fonts/Fira/firasans-light.eot?#iefix") format("embedded-opentype"), url("../../fonts/Fira/firasans-light.woff") format("woff"), url("../../fonts/Fira/firasans-light.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'SEGOEUIL';
-  src: url("/fonts/Segoe/SEGOEUIL.eot");
-  src: url("/fonts/Segoe/SEGOEUIL.eot?#iefix") format("embedded-opentype"), url("/fonts/Segoe/SEGOEUIL.woff") format("woff"), url("/fonts/Segoe/SEGOEUIL.ttf") format("truetype");
+  src: url("../../fonts/Segoe/SEGOEUIL.eot");
+  src: url("../../fonts/Segoe/SEGOEUIL.eot?#iefix") format("embedded-opentype"), url("../../fonts/Segoe/SEGOEUIL.woff") format("woff"), url("../../fonts/Segoe/SEGOEUIL.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -97,10 +97,6 @@ table {
   border-spacing: 0;
 }
 
-img {
-  max-width: 100%;
-}
-
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -187,12 +183,12 @@ footer {
 }
 
 .bg {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 .bg-img {
-  max-width: 100%;
+  display: block;
   max-height: 100%;
 }
 
@@ -200,6 +196,9 @@ footer {
   max-width: 300px;
   max-height: 300px;
   position: absolute;
+  background: url("http://lorempixel.com/180/180");
+  width: 180px;
+  height: 180px;
   cursor: pointer;
 }
 
@@ -335,7 +334,7 @@ footer {
 }
 
 .position {
-  margin-bottom: 35px;
+  margin-bottom: 13px;
 }
 .position:before, .position:after {
   content: "";
@@ -419,6 +418,7 @@ footer {
 
 .button-block {
   padding: 0 10px;
+  margin-bottom: 15px;
 }
 .button-block:before, .button-block:after {
   content: "";

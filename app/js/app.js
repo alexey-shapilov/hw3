@@ -14,7 +14,7 @@ var app = {
         self.setWatermarkPositionByVisualPanel();
         self.setWatermarkPositionBySpinner();
         self.makeWatermarkImgDraggable();
-        self.makeBackgroundImgDraggable();
+        self.resetWatermarkOpacity();
         self.downloadImg();
     },
     resetWatermarkOpacity: function() {
@@ -84,29 +84,33 @@ var app = {
             }
         });
     },
-    makeBackgroundImgDraggable: function() {
-        var self = this;
-
-        $('.bg-img').draggable({
-            grid: [ 1, 1 ]
-        });
-    },
     makeWatermarkImgDraggable: function() {
-        var self = this;
+        var self = this,
+            bgWidth = $('.bg-img').width(),
+            bgHeight = $('.bg-img').height();
+
+       /*$('.bg').css({
+            width: bgWidth,
+            height: bgHeight
+        });*/
 
         $('.watermark-img').draggable({
             containment: 'parent',
             grid: [ 1, 1 ],
-            stop: function( event, ui ) {
+            drag: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
                 $('#coord__y').val(ui.position.top);
             }
         });
+
+        console.log(bgWidth);
+        console.log(bgHeight);
     },
     setWatermarkPositionByVisualPanel: function() {
         var self = this;
 
         $('.js-set-watermark-position').on('click', function(e) {
+            e.preventDefault();
             var targetElement = $(e.currentTarget),
                 watermarkWrapper = $('.watermark-img'),
                 watermarkPosition = targetElement.data('watermarkPosition'),
@@ -220,7 +224,7 @@ var app = {
         });
     },
     calculateOpacityValue: function (value) {
-        return 1 - value / 100;
+        return value / 100;
     },
     downloadImg: function() {
         var self = this;
