@@ -1,6 +1,6 @@
 <?php
 
-    $file = 'file-upload/watermark.png';
+    $file = 'watermark/watermark.jpg';
 
     header('Cache-Control: public');
     header('Content-Description: File Transfer');
