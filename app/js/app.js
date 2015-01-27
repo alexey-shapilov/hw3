@@ -103,12 +103,15 @@ var app = {
                 $('#coord__y').val(ui.position.top);
             }
         });
+
+        console.log(bgWidth);
     },
 
-    setWatermarkPositionByVisualPanel: function() {
+    setWatermarkPositionByVisualPanel: function(e) {
         var self = this;
 
         $('.js-set-watermark-position').on('click', function(e) {
+            e.preventDefault();
             var targetElement = $(e.currentTarget),
                 watermarkWrapper = $('.watermark-img'),
                 watermarkPosition = targetElement.data('watermarkPosition'),
