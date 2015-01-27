@@ -34,6 +34,17 @@ var app = {
             left: 0
         });
     },
+    makeWatermarkImgDraggable: function() {
+        var self = this;
+
+        $('.watermark-wrapper').draggable({
+            containment: 'parent',
+            stop: function( event, ui ) {
+                $('#coord__x').val(ui.position.left);
+                $('#coord__y').val(ui.position.top);
+            }
+        });
+    },
     showLoader: function() {
         $('.js-loader').fadeIn();
     },
