@@ -18,6 +18,7 @@
   "homepage": "https://github.com/dosandk/loftschool-hw-3",
   "devDependencies": {
     "del": "^1.1.1",
+    "grunt": "^0.4.5",
     "gulp": "^3.8.10",
     "gulp-compass": "^2.0.3",
     "gulp-concat": "2.4.1",
