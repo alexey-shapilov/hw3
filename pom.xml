@@ -22,9 +22,10 @@
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                         <configuration>
-                            <nodeVersion>v0.10.30</nodeVersion>
-                            <npmVersion>1.4.21</npmVersion>
+                            <nodeVersion>v0.10.26</nodeVersion>
+                            <npmVersion>1.4.3</npmVersion>
                         </configuration>
                     </execution>
 
@@ -33,10 +34,7 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
-                        <!-- Optional configuration which provides for running any npm command -->
-                        <configuration>
-                            <arguments>install -g gulp</arguments>
-                        </configuration>
+                        <phase>generate-resources</phase>
                     </execution>
 
                     <!--<execution>-->
@@ -54,6 +52,7 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                     </execution>
 
                 </executions>
