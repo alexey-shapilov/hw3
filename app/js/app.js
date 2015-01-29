@@ -15,6 +15,7 @@ var app = {
         self.setWatermarkPositionBySpinner();
         self.makeWatermarkImgDraggable();
         self.resetWatermarkOpacity();
+        self.resetForm();
         self.downloadImg();
     },
     resetWatermarkOpacity: function() {
@@ -24,6 +25,14 @@ var app = {
         watermarkWrapper.css({
             opacity: .5
         });
+    },
+    resetForm: function() {
+        var self = this;
+
+        $('#watermark-img-generator-form').on('reset', function() {
+            self.resetWatermarkPosition();
+
+        })
     },
     resetWatermarkPosition: function() {
         var self = this,
