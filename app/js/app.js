@@ -17,6 +17,7 @@ var app = {
         self.resetWatermarkOpacity();
         self.resetForm();
         self.downloadImg();
+        self.updateWatermarkPosition();
     },
     resetWatermarkOpacity: function() {
         var self = this,
@@ -115,10 +116,13 @@ var app = {
     getWatermarkSize: function() {
         var self = this,
             watermarkWrapper = $('.watermark-img'),
-            watermarkMarginTop = -(parseInt(watermarkWrapper.width(), 10) / 2) + 'px',
-            watermarkMarginLeft = -(parseInt(watermarkWrapper.height(), 10) / 2) + 'px';
+            watermarkMarginTop = (parseInt(watermarkWrapper.width(), 10) / 2),
+            watermarkMarginLeft = (parseInt(watermarkWrapper.height(), 10) / 2),
+            bgWrapper = $('.bg-img'),
+            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkMarginLeft + 'px',
+            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkMarginTop + 'px';
 
-        return {top: watermarkMarginTop, left: watermarkMarginLeft};
+          return {top: bgHeight, left: bgWidth};
     },
     setWatermarkPositionByVisualPanel: function() {
         var self = this,
@@ -128,8 +132,8 @@ var app = {
             e.preventDefault();
             var targetElement = $(e.currentTarget),
                 watermarkPosition = targetElement.data('watermarkPosition'),
-                watermarkMarginTop = self.getWatermarkSize().top,
-                watermarkMarginLeft = self.getWatermarkSize().left,
+                bgHeight = self.getWatermarkSize().top,
+                bgWidth = self.getWatermarkSize().left,
                 positionBtn = targetElement.children('.box__cell-btn');
 
             $('.box__cell-btn').not(positionBtn).removeClass('active');
@@ -144,12 +148,12 @@ var app = {
                         top: 0,
                         left: 0
                     });
+
                     break;
                 case 'top-middle':
                     watermarkWrapper.css({
                         top: 0,
-                        left: '50%',
-                        marginLeft: watermarkMarginLeft
+                        left: bgWidth
                     });
                     break;
                 case 'top-right':
@@ -157,26 +161,23 @@ var app = {
                         top: 0,
                         right: 0
                     });
+
                     break;
                 case 'center-left':
                     watermarkWrapper.css({
-                        top: '50%',
-                        left: 0,
-                        marginTop: watermarkMarginTop
+                        top: bgHeight,
+                        left: 0
                     });
                     break;
                 case 'center-middle':
                     watermarkWrapper.css({
-                        top: '50%',
-                        marginTop: watermarkMarginTop,
-                        left: '50%',
-                        marginLeft: watermarkMarginLeft
+                        top: bgHeight,
+                        left: bgWidth
                     });
                     break;
                 case 'center-right':
                     watermarkWrapper.css({
-                        top: '50%',
-                        marginTop: watermarkMarginTop,
+                        top: bgHeight,
                         right: 0
                     });
                     break;
@@ -189,8 +190,7 @@ var app = {
                 case 'bottom-middle':
                     watermarkWrapper.css({
                         bottom: 0,
-                        left:' 50%',
-                        marginLeft: watermarkMarginLeft
+                        left:bgWidth
                     });
                     break;
                 case 'bottom-right':
@@ -199,6 +199,16 @@ var app = {
                         right: 0
                     });
             }
+        });
+    },
+    updateWatermarkPosition: function (top, left, watermarkMarginLeft){
+      var self = this,
+          watermarkWrapper = $('.watermark-img');
+
+        watermarkWrapper.css({
+            left:left,
+            top:top,
+            marginLeft: watermarkMarginLeft
         });
     },
     setWatermarkPositionBySpinner: function() {
