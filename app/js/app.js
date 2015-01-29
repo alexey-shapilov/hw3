@@ -105,10 +105,8 @@ var app = {
             containment: 'parent',
             grid: [ 1, 1 ],
             drag: function( event, ui ) {
-                $('#coord__x').val(ui.position.left);
-                $('#coord__y').val(ui.position.top);
+                self.updatePosition(ui.position.top,ui.position.left);
             }
-
         });
     },
     resetVisualPanel: function() {
@@ -127,11 +125,11 @@ var app = {
     getWatermarkSize: function() {
         var self = this,
             watermarkWrapper = $('.watermark-img'),
-            watermarkMarginTop = (parseInt(watermarkWrapper.width(), 10) / 2),
-            watermarkMarginLeft = (parseInt(watermarkWrapper.height(), 10) / 2),
+            watermarkWidth = (parseInt(watermarkWrapper.width(), 10) / 2),
+            watermarkHeight = (parseInt(watermarkWrapper.height(), 10) / 2),
             bgWrapper = $('.bg-img'),
-            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkMarginLeft,
-            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkMarginTop;
+            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkWidth,
+            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkHeight;
             self.getBgSize();
           return {top: bgHeight, left: bgWidth};
     },
@@ -227,7 +225,9 @@ var app = {
         });
     },
     setWatermarkPositionBySpinner: function() {
-        var self = this;
+        var self = this,
+            bgWrapper = $('.bg-img'),
+            watermarkWrapper = $('.watermark-img');
 
         $.each($('.js-coord__counter'), function() {
             $(this).spinner({
@@ -240,10 +240,22 @@ var app = {
                     var orientation = $(this).data('orientation');
 
                     if (orientation === 'x-coordinate') {
-                        $('.watermark-img').css({left: ui.value});
+                        if ($('#coord__x').val() >= bgWrapper.width() - watermarkWrapper.width()) {
+                            $('.watermark-img').css({left: bgWrapper.width() - watermarkWrapper.width()});
+                            $( "#coord__x" ).spinner({max:bgWrapper.width() - watermarkWrapper.width()});
+                        } else {
+                            watermarkWrapper.css({left: ui.value});
+                        }
+
                     } else if (orientation === 'y-coordinate') {
-                        $('.watermark-img').css({top: ui.value});
+                        if ($('#coord__y').val() >= bgWrapper.height() - watermarkWrapper.height()) {
+                            $('.watermark-img').css({top: bgWrapper.height() - watermarkWrapper.height()});
+                            $( "#coord__y" ).spinner({max:bgWrapper.height() - watermarkWrapper.height()});
+                        } else {
+                            watermarkWrapper.css({top: ui.value});
+                        }
                     }
+
                 }
             })
         });
