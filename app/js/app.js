@@ -130,13 +130,20 @@ var app = {
             watermarkMarginTop = (parseInt(watermarkWrapper.width(), 10) / 2),
             watermarkMarginLeft = (parseInt(watermarkWrapper.height(), 10) / 2),
             bgWrapper = $('.bg-img'),
-            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkMarginLeft + 'px',
-            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkMarginTop + 'px';
+            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkMarginLeft,
+            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkMarginTop;
             self.getBgSize();
           return {top: bgHeight, left: bgWidth};
     },
+    updatePosition: function(top,left) {
+        var self = this;
+
+        $('#coord__x').val(left);
+        $('#coord__y').val(top);
+    },
     setWatermarkPositionByVisualPanel: function() {
         var self = this,
+            bgWrapper = $('.bg-img'),
             watermarkWrapper = $('.watermark-img');
 
         $('.js-set-watermark-position').on('click', function(e) {
@@ -159,71 +166,66 @@ var app = {
                         top: 0,
                         left: 0
                     });
-
+                    self.updatePosition(0,0);
                     break;
                 case 'top-middle':
                     watermarkWrapper.css({
                         top: 0,
                         left: bgWidth
                     });
+                    self.updatePosition(0,bgWidth);
                     break;
                 case 'top-right':
                     watermarkWrapper.css({
                         top: 0,
-                        right: 0
+                        left: bgWrapper.width() - watermarkWrapper.width()
                     });
-
+                    self.updatePosition(0,bgWrapper.width() - watermarkWrapper.width());
                     break;
                 case 'center-left':
                     watermarkWrapper.css({
                         top: bgHeight,
                         left: 0
                     });
+                    self.updatePosition(bgHeight,0);
                     break;
                 case 'center-middle':
                     watermarkWrapper.css({
                         top: bgHeight,
                         left: bgWidth
                     });
+                    self.updatePosition(bgHeight,bgWidth);
                     break;
                 case 'center-right':
                     watermarkWrapper.css({
                         top: bgHeight,
-                        right: 0
+                        left: bgWrapper.width() - watermarkWrapper.width()
                     });
+                    self.updatePosition(bgHeight,bgWrapper.width() - watermarkWrapper.width());
                     break;
                 case 'bottom-left':
                     watermarkWrapper.css({
-                        bottom: 0,
+                        top: bgWrapper.height() - watermarkWrapper.height(),
                         left: 0
                     });
+                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),0);
                     break;
                 case 'bottom-middle':
                     watermarkWrapper.css({
-                        bottom: 0,
-                        left:bgWidth
+                        top: bgWrapper.height() - watermarkWrapper.height(),
+                        left: bgWidth
                     });
+                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),bgWidth);
                     break;
                 case 'bottom-right':
                     watermarkWrapper.css({
-                        bottom: 0,
-                        right: 0
+                        top: bgWrapper.height() - watermarkWrapper.height(),
+                        left: bgWrapper.width() - watermarkWrapper.width()
                     });
+                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),bgWrapper.width() - watermarkWrapper.width());
             }
         });
     },
-   /* updateWatermarkPosition: function (top, left){
-      var self = this,
-          coordX = $("#coord__x"),
-          coordY = $("#coord__y");
-          watermarkWrapper = $('.watermark-img');
-          coordX.text(left);
-          coordY.text(top);
-        watermarkWrapper.css({
-           // left: left,
-           // top: top
-        });
-    },*/
     setWatermarkPositionBySpinner: function() {
         var self = this;
 
