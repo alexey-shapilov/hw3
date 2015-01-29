@@ -96,21 +96,33 @@ var app = {
         });
     },
     makeWatermarkImgDraggable: function() {
-        var self = this;
-
-        $('.watermark-img').draggable({
+        var self = this,
+            wm = $('.watermark-img');
+        wm.on('mouseover', function(){
+            self.getBgSize();
+        });
+        wm.draggable({
             containment: 'parent',
             grid: [ 1, 1 ],
             drag: function( event, ui ) {
                 $('#coord__x').val(ui.position.left);
                 $('#coord__y').val(ui.position.top);
             }
+
         });
     },
     resetVisualPanel: function() {
         var self = this;
 
         $('.box__cell-btn').removeClass('active').first().addClass('active');
+    },
+    getBgSize: function (){
+        var self = this,
+            bgWrapper = $('.bg-img');
+        $('.bg').css({
+            width:bgWrapper.width(),
+            height:bgWrapper.height()
+        });
     },
     getWatermarkSize: function() {
         var self = this,
@@ -120,12 +132,7 @@ var app = {
             bgWrapper = $('.bg-img'),
             bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkMarginLeft + 'px',
             bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkMarginTop + 'px';
-            console.log(bgWrapper.width());
-            console.log(bgWrapper.height());
-            $('.bg').css({
-                width:bgWrapper.width(),
-                height:bgWrapper.height()
-            });
+            self.getBgSize();
           return {top: bgHeight, left: bgWidth};
     },
     setWatermarkPositionByVisualPanel: function() {
