@@ -31,13 +31,15 @@ var app = {
 
         $('#watermark-img-generator-form').on('reset', function() {
             self.resetWatermarkPosition();
-
+            self.resetWatermarkOpacity();
+            self.resetVisualPanel();
         })
     },
     resetWatermarkPosition: function() {
         var self = this,
             watermarkWrapper = $('.watermark-img');
 
+        watermarkWrapper.removeAttr('style');
         watermarkWrapper.css({
             top: 0,
             left: 0
@@ -94,14 +96,7 @@ var app = {
         });
     },
     makeWatermarkImgDraggable: function() {
-        var self = this,
-            bgWidth = $('.bg-img').width(),
-            bgHeight = $('.bg-img').height();
-
-       /*$('.bg').css({
-            width: bgWidth,
-            height: bgHeight
-        });*/
+        var self = this;
 
         $('.watermark-img').draggable({
             containment: 'parent',
@@ -111,18 +106,30 @@ var app = {
                 $('#coord__y').val(ui.position.top);
             }
         });
+    },
+    resetVisualPanel: function() {
+        var self = this;
 
-        console.log(bgWidth);
-        console.log(bgHeight);
+        $('.box__cell-btn').removeClass('active').first().addClass('active');
+    },
+    getWatermarkSize: function() {
+        var self = this,
+            watermarkWrapper = $('.watermark-img'),
+            watermarkMarginTop = -(parseInt(watermarkWrapper.width(), 10) / 2) + 'px',
+            watermarkMarginLeft = -(parseInt(watermarkWrapper.height(), 10) / 2) + 'px';
+
+        return {top: watermarkMarginTop, left: watermarkMarginLeft};
     },
     setWatermarkPositionByVisualPanel: function() {
-        var self = this;
+        var self = this,
+            watermarkWrapper = $('.watermark-img');
 
         $('.js-set-watermark-position').on('click', function(e) {
             e.preventDefault();
             var targetElement = $(e.currentTarget),
-                watermarkWrapper = $('.watermark-img'),
                 watermarkPosition = targetElement.data('watermarkPosition'),
+                watermarkMarginTop = self.getWatermarkSize().top,
+                watermarkMarginLeft = self.getWatermarkSize().left,
                 positionBtn = targetElement.children('.box__cell-btn');
 
             $('.box__cell-btn').not(positionBtn).removeClass('active');
@@ -142,7 +149,7 @@ var app = {
                     watermarkWrapper.css({
                         top: 0,
                         left: '50%',
-                        marginLeft: '-90px'
+                        marginLeft: watermarkMarginLeft
                     });
                     break;
                 case 'top-right':
@@ -155,21 +162,21 @@ var app = {
                     watermarkWrapper.css({
                         top: '50%',
                         left: 0,
-                        marginTop: '-90px'
+                        marginTop: watermarkMarginTop
                     });
                     break;
                 case 'center-middle':
                     watermarkWrapper.css({
                         top: '50%',
-                        marginTop: '-90px',
+                        marginTop: watermarkMarginTop,
                         left: '50%',
-                        marginLeft: '-90px'
+                        marginLeft: watermarkMarginLeft
                     });
                     break;
                 case 'center-right':
                     watermarkWrapper.css({
                         top: '50%',
-                        marginTop: '-90px',
+                        marginTop: watermarkMarginTop,
                         right: 0
                     });
                     break;
@@ -183,7 +190,7 @@ var app = {
                     watermarkWrapper.css({
                         bottom: 0,
                         left:' 50%',
-                        marginLeft: '-90px'
+                        marginLeft: watermarkMarginLeft
                     });
                     break;
                 case 'bottom-right':
