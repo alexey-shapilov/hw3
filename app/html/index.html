@@ -41,6 +41,8 @@
                   <div class="file">
                     <input id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
                     <input type="text" id="bg-img" name="bgImg" value="" class="hide">
+                    <input type="text" id="bg-width" name="bgImgWidth" value="" class="hide">
+                    <input type="text" id="bg-height" name="bgImgHeight" value="" class="hide">
                     <div class="file__inputbox"><span class="upload-bg-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -50,6 +52,8 @@
                   <div class="file">
                     <input id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
                     <input type="text" id="wm-img" name="wmImg" value="" class="hide">
+                    <input type="text" id="wm-img-width" name="wmImgWidth" value="" class="hide">
+                    <input type="text" id="wm-img-height" name="wmImgHeight" value="" class="hide">
                     <div class="file__inputbox"><span class="upload-wm-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -85,11 +89,11 @@
                   <div class="position__coordinates">
                     <div class="switch__wrap">
                       <label class="coord__label">X</label>
-                      <input id="coord__x" name="wmCoordX" type="text" value="0" data-orientation="x-coordinate" disabled="disabled" class="coord__counter js-coord__counter">
+                      <input id="coord__x" name="wmCoordX" type="text" value="0" data-orientation="x-coordinate" class="coord__counter js-coord__counter">
                     </div>
                     <div class="switch__wrap">
                       <label class="coord__label">Y</label>
-                      <input id="coord__y" name="wmCoordY" type="text" value="0" data-orientation="y-coordinate" disabled="disabled" class="coord__counter js-coord__counter">
+                      <input id="coord__y" name="wmCoordY" type="text" value="0" data-orientation="y-coordinate" class="coord__counter js-coord__counter">
                     </div>
                   </div>
                 </div>

@@ -52,7 +52,8 @@ var app = {
         $('.js-loader').fadeOut();
     },
     downloadBackgroundImg: function() {
-        var self = this;
+        var self = this,
+            bgImage = $('.bg-img');
 
         $('#upload-pic').fileupload({
             dataType: 'json',
@@ -62,8 +63,11 @@ var app = {
             },
             done: function (e, data) {
                 $('.upload-bg-placeholder').html(data.originalFiles[0].name);
-                $('.bg-img').attr('src', data.result.files[0].url);
+                bgImage.attr('src', data.result.files[0].url).load(function() {
+                    self.getCurrentBackgroundImageDimensions(bgImage);
+                });
                 $('#bg-img').val(data.result.files[0].url);
+
                 self.hideLoader();
             },
             fail: function(e, data) {
@@ -73,9 +77,10 @@ var app = {
         });
     },
     downloadWatermarkImg: function() {
-        var self = this;
+        var self = this,
+            watermark = $('.watermark-img');
 
-        self.resetWatermarkPosition();
+            self.resetWatermarkPosition();
 
         $('#upload-wm').fileupload({
             dataType: 'json',
@@ -85,8 +90,11 @@ var app = {
             },
             done: function (e, data) {
                 $('.upload-wm-placeholder').html(data.originalFiles[0].name);
-                $('.watermark-img').attr('src', data.result.files[0].url);
+                watermark.attr('src', data.result.files[0].url).load(function() {
+                    self.getCurrentWatermarkImageDimensions();
+                });
                 $('#wm-img').val(data.result.files[0].url);
+
                 self.hideLoader();
             },
             fail: function(e, data) {
@@ -94,6 +102,24 @@ var app = {
                 self.hideLoader();
             }
         });
+    },
+    getCurrentWatermarkImageDimensions: function(img) {
+        var self = this,
+            watermark = $('.watermark-img'),
+            currentWidth = watermark.width(),
+            currentHeight = watermark.height();
+
+        $('#wm-img-width').val(currentWidth);
+        $('#wm-img-height').val(currentHeight);
+    },
+    getCurrentBackgroundImageDimensions: function() {
+        var self = this,
+            bg = $('.bg-img'),
+            currentWidth = bg.width(),
+            currentHeight = bg.height();
+
+        $('#bg-width').val(currentWidth);
+        $('#bg-height').val(currentHeight);
     },
     makeWatermarkImgDraggable: function() {
         var self = this,

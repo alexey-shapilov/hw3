@@ -46,6 +46,8 @@ html
                                     .file
                                         input.file__upload-pic(id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple)
                                         input.hide(type='text' id='bg-img' name='bgImg' value='')
+                                        input.hide(type='text' id='bg-width' name='bgImgWidth' value='')
+                                        input.hide(type='text' id='bg-height' name='bgImgHeight' value='')
                                         .file__inputbox
                                             span.upload-bg-placeholder Загрузите изображение
                                         .file__btn
@@ -54,6 +56,8 @@ html
                                     .file
                                         input.file__upload-pic(id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple)
                                         input.hide(type='text' id='wm-img' name='wmImg' value='')
+                                        input.hide(type='text' id='wm-img-width' name='wmImgWidth' value='')
+                                        input.hide(type='text' id='wm-img-height' name='wmImgHeight' value='')
                                         .file__inputbox
                                             span.upload-wm-placeholder Загрузите изображение
                                         .file__btn
@@ -91,11 +95,11 @@ html
                                     .position__coordinates
                                         .switch__wrap
                                             label.coord__label X
-                                            input.coord__counter.js-coord__counter(id="coord__x" name="wmCoordX" type="text" value="0" data-orientation='x-coordinate' disabled="disabled")
+                                            input.coord__counter.js-coord__counter(id="coord__x" name="wmCoordX" type="text" value="0" data-orientation='x-coordinate')
 
                                         .switch__wrap
                                             label.coord__label Y
-                                            input.coord__counter.js-coord__counter(id="coord__y" name="wmCoordY" type="text" value="0" data-orientation='y-coordinate' disabled="disabled")
+                                            input.coord__counter.js-coord__counter(id="coord__y" name="wmCoordY" type="text" value="0" data-orientation='y-coordinate')
 
                             div.settings-block.block__border-none
                                 .block__header
