@@ -5,12 +5,18 @@ $experimental-support-for-microsoft: true;
 $experimental-support-for-pie: false;
 $experimental-support-for-svg: true;
 
+
+//base settings
+
+$container_width:   960px;
+$footer_height:     50px;
+
 // colors settings
 
 // fonts settings
 
 // sprites settings
-$ui-sprite: sprite-map('ui/*.png', $layout: 'horizontal', $spacing: 10px);
+//$ui-sprite: sprite-map('ui/*.png', $layout: 'horizontal', $spacing: 10px);
 
 // media-queries settings
 
