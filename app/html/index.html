@@ -28,7 +28,7 @@
           <div class="block__left">
             <h1>Генератор водяных знаков</h1>
             <div class="block__left-result">
-              <div class="bg"><img src="http://lorempixel.com/600/600" class="bg-img"><img src="http://lorempixel.com/180/180" width="100%" height="100%" class="watermark-img"></div>
+              <div class="main-img-wrapper"><img src="../php/file-upload/files/background-default.jpg" class="bg-img"><img src="../php/file-upload/files/watermark-default.png" class="watermark-img"></div>
               <div class="js-loader loader"></div>
             </div>
           </div>
@@ -40,9 +40,9 @@
                   <label for="upload-pic" class="file-label">Исходное изображение</label>
                   <div class="file">
                     <input id="upload-pic" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
-                    <input type="text" id="bg-img" name="bgImg" value="" class="hide">
-                    <input type="text" id="bg-width" name="bgImgWidth" value="" class="hide">
-                    <input type="text" id="bg-height" name="bgImgHeight" value="" class="hide">
+                    <input type="text" id="bg-img" name="bgImg" value="../php/file-upload/files/background-default.jpg" class="hide">
+                    <input type="text" id="bg-width" name="bgImgWidth" value="520" class="hide">
+                    <input type="text" id="bg-height" name="bgImgHeight" value="520" class="hide">
                     <div class="file__inputbox"><span class="upload-bg-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -51,9 +51,9 @@
                   <label for="upload-wm" class="file-label">Водяной знак</label>
                   <div class="file">
                     <input id="upload-wm" name="files[]" data-url="../php/file-upload/" type="file" placeholder="Загрузите изображение" multiple class="file__upload-pic">
-                    <input type="text" id="wm-img" name="wmImg" value="" class="hide">
-                    <input type="text" id="wm-img-width" name="wmImgWidth" value="" class="hide">
-                    <input type="text" id="wm-img-height" name="wmImgHeight" value="" class="hide">
+                    <input type="text" id="wm-img" name="wmImg" value="../php/file-upload/files/watermark-default.png" class="hide">
+                    <input type="text" id="wm-img-width" name="wmImgWidth" value="300" class="hide">
+                    <input type="text" id="wm-img-height" name="wmImgHeight" value="185" class="hide">
                     <div class="file__inputbox"><span class="upload-wm-placeholder">Загрузите изображение</span></div>
                     <div class="file__btn"></div>
                   </div>
@@ -69,19 +69,19 @@
                     <table class="position__visual-box">
                       <tbody class="box__body">
                         <tr class="box__row">
-                          <td data-watermark-position="top-left" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn active"></a></td>
-                          <td data-watermark-position="top-middle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
-                          <td data-watermark-position="top-right" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="topLeft" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn active"></a></td>
+                          <td data-watermark-position="topMiddle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="topRight" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
                         </tr>
                         <tr class="box__row">
-                          <td data-watermark-position="center-left" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
-                          <td data-watermark-position="center-middle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
-                          <td data-watermark-position="center-right" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="centerLeft" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="centerMiddle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="centerRight" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
                         </tr>
                         <tr class="box__row">
-                          <td data-watermark-position="bottom-left" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
-                          <td data-watermark-position="bottom-middle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
-                          <td data-watermark-position="bottom-right" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="bottomLeft" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="bottomMiddle" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
+                          <td data-watermark-position="bottomRight" class="box__cell js-set-watermark-position"><a href="#" class="box__cell-btn"></a></td>
                         </tr>
                       </tbody>
                     </table>

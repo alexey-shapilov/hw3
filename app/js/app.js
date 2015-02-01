@@ -1,4 +1,8 @@
 var app = {
+    $watermarkImg: $('.watermark-img'),
+    $backgroundImg: $('.bg-img'),
+    $loader: $('.js-loader'),
+    defaultWatermarkOpacity: 0.5,
     initialize: function() {
         var self = this;
 
@@ -19,11 +23,14 @@ var app = {
         self.downloadImg();
     },
     resetWatermarkOpacity: function() {
-        var self = this,
-            watermarkWrapper = $('.watermark-img');
+        var self = this;
 
-        watermarkWrapper.css({
-            opacity: .5
+        self.$watermarkImg.css({
+            opacity: self.defaultWatermarkOpacity
+        });
+
+        $('.ui-slider').slider({
+            value: self.defaultWatermarkOpacity * 100
         });
     },
     resetForm: function() {
@@ -36,24 +43,25 @@ var app = {
         })
     },
     resetWatermarkPosition: function() {
-        var self = this,
-            watermarkWrapper = $('.watermark-img');
+        var self = this;
 
-        watermarkWrapper.removeAttr('style');
-        watermarkWrapper.css({
+        self.$watermarkImg.removeAttr('style').css({
             top: 0,
             left: 0
         });
     },
     showLoader: function() {
-        $('.js-loader').fadeIn();
+        var self = this;
+
+        self.$loader.fadeIn();
     },
     hideLoader: function() {
-        $('.js-loader').fadeOut();
+        var self = this;
+
+        self.$loader.fadeOut();
     },
     downloadBackgroundImg: function() {
-        var self = this,
-            bgImage = $('.bg-img');
+        var self = this;
 
         $('#upload-pic').fileupload({
             dataType: 'json',
@@ -63,9 +71,11 @@ var app = {
             },
             done: function (e, data) {
                 $('.upload-bg-placeholder').html(data.originalFiles[0].name);
-                bgImage.attr('src', data.result.files[0].url).load(function() {
-                    self.getCurrentBackgroundImageDimensions(bgImage);
+
+                self.$backgroundImg.attr('src', data.result.files[0].url).load(function() {
+                    self.getCurrentBackgroundImageDimensions();
                 });
+
                 $('#bg-img').val(data.result.files[0].url);
 
                 self.hideLoader();
@@ -77,8 +87,7 @@ var app = {
         });
     },
     downloadWatermarkImg: function() {
-        var self = this,
-            watermark = $('.watermark-img');
+        var self = this;
 
             self.resetWatermarkPosition();
 
@@ -90,9 +99,11 @@ var app = {
             },
             done: function (e, data) {
                 $('.upload-wm-placeholder').html(data.originalFiles[0].name);
-                watermark.attr('src', data.result.files[0].url).load(function() {
+
+                self.$watermarkImg.attr('src', data.result.files[0].url).load(function() {
                     self.getCurrentWatermarkImageDimensions();
                 });
+
                 $('#wm-img').val(data.result.files[0].url);
 
                 self.hideLoader();
@@ -105,33 +116,32 @@ var app = {
     },
     getCurrentWatermarkImageDimensions: function(img) {
         var self = this,
-            watermark = $('.watermark-img'),
-            currentWidth = watermark.width(),
-            currentHeight = watermark.height();
+            currentWidth = self.$watermarkImg.width(),
+            currentHeight = self.$backgroundImg.height();
 
         $('#wm-img-width').val(currentWidth);
         $('#wm-img-height').val(currentHeight);
     },
     getCurrentBackgroundImageDimensions: function() {
         var self = this,
-            bg = $('.bg-img'),
-            currentWidth = bg.width(),
-            currentHeight = bg.height();
+            currentWidth = self.$backgroundImg.width(),
+            currentHeight = self.$backgroundImg.height();
 
         $('#bg-width').val(currentWidth);
         $('#bg-height').val(currentHeight);
     },
     makeWatermarkImgDraggable: function() {
-        var self = this,
-            wm = $('.watermark-img');
-        wm.on('mouseover', function(){
-            self.getBgSize();
+        var self = this;
+
+        self.$watermarkImg.on('mouseover', function(){
+            self.setMainWrapperSize();
         });
-        wm.draggable({
+
+        self.$watermarkImg.draggable({
             containment: 'parent',
             grid: [ 1, 1 ],
             drag: function( event, ui ) {
-                self.updatePosition(ui.position.top,ui.position.left);
+                self.updateSpinnerValue({top: ui.position.top, left: ui.position.left});
             }
         });
     },
@@ -140,120 +150,86 @@ var app = {
 
         $('.box__cell-btn').removeClass('active').first().addClass('active');
     },
-    getBgSize: function (){
-        var self = this,
-            bgWrapper = $('.bg-img');
-        $('.bg').css({
-            width:bgWrapper.width(),
-            height:bgWrapper.height()
-        });
-    },
-    getWatermarkSize: function() {
-        var self = this,
-            watermarkWrapper = $('.watermark-img'),
-            watermarkWidth = (parseInt(watermarkWrapper.width(), 10) / 2),
-            watermarkHeight = (parseInt(watermarkWrapper.height(), 10) / 2),
-            bgWrapper = $('.bg-img'),
-            bgWidth = (parseInt(bgWrapper.width(), 10) / 2) - watermarkWidth,
-            bgHeight = (parseInt(bgWrapper.height(), 10) / 2) - watermarkHeight;
-            self.getBgSize();
-          return {top: bgHeight, left: bgWidth};
-    },
-    updatePosition: function(top,left) {
+    setMainWrapperSize: function (){
         var self = this;
 
-        $('#coord__x').val(left);
-        $('#coord__y').val(top);
+        $('.main-img-wrapper').css({
+            width: self.$backgroundImg.width(),
+            height: self.$backgroundImg.height()
+        });
+    },
+    getWatermarkOffsets: function() {
+        var self = this,
+            watermarkWidth = parseInt(self.$watermarkImg.width(), 10),
+            watermarkHeight = parseInt(self.$watermarkImg.height(), 10),
+            backgroundWidth = parseInt(self.$backgroundImg.width(), 10),
+            backgroundHeight = parseInt(self.$backgroundImg.height(), 10),
+            watermarkOffsets = {};
+
+            watermarkOffsets.top = backgroundHeight - watermarkHeight;
+            watermarkOffsets.left = backgroundWidth - watermarkWidth;
+            watermarkOffsets.centerTop = watermarkOffsets.top / 2;
+            watermarkOffsets.centerLeft = watermarkOffsets.left / 2;
+
+        return watermarkOffsets;
+    },
+    getWatermarkNavigationCoordinates: function() {
+        var self = this,
+            yCoordinates = ['top', 'center', 'bottom'],
+            xCoordinates = ['Left', 'Middle', 'Right'],
+            watermarkOffsets = self.getWatermarkOffsets(),
+            watermarkNavigationCoordinates = {};
+
+        for (var i = 0; i < yCoordinates.length; i++) {
+            for (var j = 0; j < xCoordinates.length; j++) {
+                watermarkNavigationCoordinates[yCoordinates[i] + xCoordinates[j]] = { top: 0, left: 0 };
+
+                if (xCoordinates[j] === 'Right') {
+                    watermarkNavigationCoordinates[yCoordinates[i] + xCoordinates[j]].left = watermarkOffsets.left;
+                }
+                if (xCoordinates[j] === 'Middle') {
+                    watermarkNavigationCoordinates[yCoordinates[i] + xCoordinates[j]].left = watermarkOffsets.centerLeft;
+                }
+                if (yCoordinates[i] === 'center') {
+                    watermarkNavigationCoordinates[yCoordinates[i] + xCoordinates[j]].top = watermarkOffsets.centerTop;
+                }
+                if (yCoordinates[i] === 'bottom') {
+                    watermarkNavigationCoordinates[yCoordinates[i] + xCoordinates[j]].top = watermarkOffsets.top;
+                }
+            }
+        }
+
+        return watermarkNavigationCoordinates;
+    },
+    updateSpinnerValue: function(coords) {
+        $('#coord__y').val(Math.round(coords.top));
+        $('#coord__x').val(Math.round(coords.left));
     },
     setWatermarkPositionByVisualPanel: function() {
-        var self = this,
-            bgWrapper = $('.bg-img'),
-            watermarkWrapper = $('.watermark-img');
+        var self = this;
 
         $('.js-set-watermark-position').on('click', function(e) {
-            e.preventDefault();
             var targetElement = $(e.currentTarget),
                 watermarkPosition = targetElement.data('watermarkPosition'),
-                bgHeight = self.getWatermarkSize().top,
-                bgWidth = self.getWatermarkSize().left,
+                watermarkNavigationCoordinates = self.getWatermarkNavigationCoordinates(),
                 positionBtn = targetElement.children('.box__cell-btn');
+
+            e.preventDefault();
+            self.setMainWrapperSize();
 
             $('.box__cell-btn').not(positionBtn).removeClass('active');
             positionBtn.addClass('active');
 
-            watermarkWrapper.removeAttr('style');
-            watermarkWrapper.css({ opacity: self.calculateOpacityValue($('.ui-slider').slider('value')) });
+            self.$watermarkImg.removeAttr('style').css({
+                opacity: self.calculateOpacityValue($('.ui-slider').slider('value'))
+            });
 
-            switch (watermarkPosition) {
-                case 'top-left':
-                    watermarkWrapper.css({
-                        top: 0,
-                        left: 0
-                    });
-                    self.updatePosition(0,0);
-                    break;
-                case 'top-middle':
-                    watermarkWrapper.css({
-                        top: 0,
-                        left: bgWidth
-                    });
-                    self.updatePosition(0,bgWidth);
-                    break;
-                case 'top-right':
-                    watermarkWrapper.css({
-                        top: 0,
-                        left: bgWrapper.width() - watermarkWrapper.width()
-                    });
-                    self.updatePosition(0,bgWrapper.width() - watermarkWrapper.width());
-                    break;
-                case 'center-left':
-                    watermarkWrapper.css({
-                        top: bgHeight,
-                        left: 0
-                    });
-                    self.updatePosition(bgHeight,0);
-                    break;
-                case 'center-middle':
-                    watermarkWrapper.css({
-                        top: bgHeight,
-                        left: bgWidth
-                    });
-                    self.updatePosition(bgHeight,bgWidth);
-                    break;
-                case 'center-right':
-                    watermarkWrapper.css({
-                        top: bgHeight,
-                        left: bgWrapper.width() - watermarkWrapper.width()
-                    });
-                    self.updatePosition(bgHeight,bgWrapper.width() - watermarkWrapper.width());
-                    break;
-                case 'bottom-left':
-                    watermarkWrapper.css({
-                        top: bgWrapper.height() - watermarkWrapper.height(),
-                        left: 0
-                    });
-                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),0);
-                    break;
-                case 'bottom-middle':
-                    watermarkWrapper.css({
-                        top: bgWrapper.height() - watermarkWrapper.height(),
-                        left: bgWidth
-                    });
-                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),bgWidth);
-                    break;
-                case 'bottom-right':
-                    watermarkWrapper.css({
-                        top: bgWrapper.height() - watermarkWrapper.height(),
-                        left: bgWrapper.width() - watermarkWrapper.width()
-                    });
-                    self.updatePosition(bgWrapper.height() - watermarkWrapper.height(),bgWrapper.width() - watermarkWrapper.width());
-            }
+            self.$watermarkImg.css(watermarkNavigationCoordinates[watermarkPosition]);
+            self.updateSpinnerValue(watermarkNavigationCoordinates[watermarkPosition]);
         });
     },
     setWatermarkPositionBySpinner: function() {
-        var self = this,
-            bgWrapper = $('.bg-img'),
-            watermarkWrapper = $('.watermark-img');
+        var self = this;
 
         $.each($('.js-coord__counter'), function() {
             $(this).spinner({
@@ -263,39 +239,38 @@ var app = {
                     down: 'spinner-down-btn'
                 },
                 spin: function( event, ui ) {
-                    var orientation = $(this).data('orientation');
+                    var orientation = $(this).data('orientation'),
+                        watermarkOffsets = self.getWatermarkOffsets();
 
                     if (orientation === 'x-coordinate') {
-                        if ($('#coord__x').val() >= bgWrapper.width() - watermarkWrapper.width()) {
-                            $('.watermark-img').css({left: bgWrapper.width() - watermarkWrapper.width()});
-                            $( "#coord__x" ).spinner({max:bgWrapper.width() - watermarkWrapper.width()});
+                        if ($(this).val() >= watermarkOffsets.left ) {
+                            self.$watermarkImg.css({ left: watermarkOffsets.left });
+                            $(this).spinner({max: watermarkOffsets.left });
                         } else {
-                            watermarkWrapper.css({left: ui.value});
+                            self.$watermarkImg.css({left: ui.value});
                         }
 
                     } else if (orientation === 'y-coordinate') {
-                        if ($('#coord__y').val() >= bgWrapper.height() - watermarkWrapper.height()) {
-                            $('.watermark-img').css({top: bgWrapper.height() - watermarkWrapper.height()});
-                            $( "#coord__y" ).spinner({max:bgWrapper.height() - watermarkWrapper.height()});
+                        if ($(this).val() >= watermarkOffsets.top ) {
+                            self.$watermarkImg.css({top: watermarkOffsets.top });
+                            $(this).spinner({max: watermarkOffsets.top });
                         } else {
-                            watermarkWrapper.css({top: ui.value});
+                            self.$watermarkImg.css({top: ui.value});
                         }
                     }
-
                 }
             })
         });
     },
     setWatermarkOpacity: function() {
-        var self = this,
-            watermarkDefaultOpacity = 50;
+        var self = this;
 
-        $('.watermark-img').css({opacity: self.calculateOpacityValue(watermarkDefaultOpacity)});
+        self.$watermarkImg.css({ opacity: self.defaultWatermarkOpacity });
 
         $('.ui-slider').slider({
-            value: watermarkDefaultOpacity,
+            value: self.defaultWatermarkOpacity * 100,
             slide: function (event, ui) {
-                $('.watermark-img').css({opacity: self.calculateOpacityValue(ui.value)});
+                self.$watermarkImg.css({opacity: self.calculateOpacityValue(ui.value)});
             },
             stop: function(event, ui) {
                 $('#watermark-opacity-value').val(self.calculateOpacityValue(ui.value))
@@ -310,9 +285,6 @@ var app = {
 
         $('#watermark-img-generator-form').submit(function(e){
             e.preventDefault();
-            var $form = $(this);
-
-            console.log($form.serialize());
 
             self.showLoader();
             $.ajax({
@@ -320,15 +292,10 @@ var app = {
                 type: 'POST',
                 data: $(this).serialize()
             })
-                .done(function(data) {
-                    console.log(data);
-
+                .done(function() {
                     $('body').append("<iframe src='../php/download.php'></iframe>");
-                    self.hideLoader();
-                }).fail(function(error) {
-                    //console.log(error);
                 }).always(function() {
-                    //console.log('always');
+                    self.hideLoader();
                 });
         });
     }
