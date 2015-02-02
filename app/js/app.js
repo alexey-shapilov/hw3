@@ -74,11 +74,11 @@ var app = {
 
                 self.$backgroundImg.attr('src', data.result.files[0].url).load(function() {
                     self.getCurrentBackgroundImageDimensions();
+                    self.hideLoader();
                 });
 
                 $('#bg-img').val(data.result.files[0].url);
 
-                self.hideLoader();
             },
             fail: function(e, data) {
                 alert('Error: ' + data.textStatus);
@@ -102,11 +102,10 @@ var app = {
 
                 self.$watermarkImg.attr('src', data.result.files[0].url).load(function() {
                     self.getCurrentWatermarkImageDimensions();
+                    self.hideLoader();
                 });
 
                 $('#wm-img').val(data.result.files[0].url);
-
-                self.hideLoader();
             },
             fail: function(e, data) {
                 alert('Error: ' + data.textStatus);

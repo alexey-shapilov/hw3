@@ -1,8 +1,6 @@
 <?php
     require_once 'wideimage/lib/WideImage.php';
 
-    $watermark_generated = 'watermark/watermark.jpg';
-
     $result['wmCoordX'] = $_POST['wmCoordX'];
     $result['wmCoordY'] = $_POST['wmCoordY'];
     $result['wmOpacity'] = $_POST['wmOpacity'] * 100;
