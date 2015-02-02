@@ -8,4 +8,9 @@ loftschool homework 3
 
 далее запускаем gulp watch - компилит jade, scss, сжимает картинки
 
-## Работа с Gulp
+## Используемые технологии:
+- sass+compass - компиляция css
+- jade - html шаблонизатор
+- gulp - сборка проекта
+
+## Работа с Gulp:
