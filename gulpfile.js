@@ -33,7 +33,7 @@ var appPaths = {
     html    : basePath.app + 'html/',
     img     : basePath.app + 'img/',
     fonts   : basePath.app + 'fonts/',
-    phpCore : basePath.app + 'php-core/',
+    phpCore : basePath.app + 'php/',
     scss    : basePath.app + 'scss/'
 };
 
@@ -42,7 +42,7 @@ var distPaths = {
     js      : basePath.dist + 'js/',
     img     : basePath.dist + 'img/',
     fonts   : basePath.dist + 'fonts/',
-    phpCore : basePath.dist + 'php-core/'
+    phpCore : basePath.dist + 'php/'
 };
 
 /* --------------- BUILD TASKS --------------- */
@@ -54,7 +54,7 @@ gulp.task('cleanBuildDir', function (cb) {
 });
 
 gulp.task('buildHTML', ['cleanBuildDir'], function() {
-    gulp.src(appPaths.jade +'*.jade')
+    gulp.src(appPaths.jade + '*.jade')
         .pipe(plumber())
         .pipe(jade({pretty: true}))
         .pipe(preprocess({context: { environment: 'production', DEBUG: true }}))

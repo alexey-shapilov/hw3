@@ -18,10 +18,13 @@ html
         //Google Fonts
         link(href='http://fonts.googleapis.com/css?family=Roboto:300,500italic,400&subset=cyrillic,latin', rel='stylesheet', type='text/css')
 
+        // build:css
         link(rel='stylesheet', href="../css/ui/jquery-ui.css")
         link(rel='stylesheet', href="../css/ui/spinner.css")
         link(rel='stylesheet', href="../css/ui/slider.css")
         link(rel='stylesheet', href="../css/ui/ui.css")
+        // endbuild
+
     body
         <!--[if lt IE 7]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -116,6 +119,7 @@ html
                 .footer__text
                     p &copy; 2014, Это мой сайт, пожалуйста, не копируйте и не воруйте его
 
+        // build:js
         script(type='text/javascript', src='../js/libs/jquery/jquery.min.js')
         script(type='text/javascript', src='../js/libs/jquery-ui/jquery-ui.min.js')
 
@@ -124,4 +128,4 @@ html
         script(type='text/javascript', src='../js/libs/jquery-file-upload/jquery.fileupload.js')
 
         script(type='text/javascript', src='../js/app.js')
-
+        // endbuild
